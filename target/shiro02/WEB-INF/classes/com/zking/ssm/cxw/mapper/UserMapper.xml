@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.cxw.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.cxw.model.User" >
+    <constructor >
+      <idArg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_role_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_salt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_locked" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="user" type="com.zking.ssm.cxw.model.User" >
+    <constructor >
+      <idArg column="user_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_role_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="user_flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="user_salt" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="user_locked" jdbcType="BIGINT" javaType="java.lang.Long" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_name, user_password, user_role_id, user_flag, user_salt, user_locked
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_user
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.cxw.model.User" >
+    insert into sys_user (user_id, user_name, user_password, 
+      user_role_id, user_flag, user_salt, 
+      user_locked)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userRoleId,jdbcType=BIGINT}, #{userFlag,jdbcType=INTEGER}, #{userSalt,jdbcType=VARCHAR}, 
+      #{userLocked,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.cxw.model.User" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPassword != null" >
+        user_password,
+      </if>
+      <if test="userRoleId != null" >
+        user_role_id,
+      </if>
+      <if test="userFlag != null" >
+        user_flag,
+      </if>
+      <if test="userSalt != null" >
+        user_salt,
+      </if>
+      <if test="userLocked != null" >
+        user_locked,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userRoleId != null" >
+        #{userRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="userFlag != null" >
+        #{userFlag,jdbcType=INTEGER},
+      </if>
+      <if test="userSalt != null" >
+        #{userSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userLocked != null" >
+        #{userLocked,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.cxw.model.User" >
+    update sys_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userRoleId != null" >
+        user_role_id = #{userRoleId,jdbcType=BIGINT},
+      </if>
+      <if test="userFlag != null" >
+        user_flag = #{userFlag,jdbcType=INTEGER},
+      </if>
+      <if test="userSalt != null" >
+        user_salt = #{userSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userLocked != null" >
+        user_locked = #{userLocked,jdbcType=BIGINT},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.cxw.model.User" >
+    update sys_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_role_id = #{userRoleId,jdbcType=BIGINT},
+      user_flag = #{userFlag,jdbcType=INTEGER},
+      user_salt = #{userSalt,jdbcType=VARCHAR},
+      user_locked = #{userLocked,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectById" resultMap="user" parameterType="com.zking.ssm.cxw.model.User" >
+    select
+    *
+    from sys_user
+    where user_id = #{userId,jdbcType=BIGINT} and user_name = #{userName,jdbcType=BIGINT}
+  </select>
+  <select id="selectByName" resultMap="user" parameterType="com.zking.ssm.cxw.model.User" >
+    select
+    *
+    from sys_user
+    where user_name = #{userName,jdbcType=BIGINT}
+  </select>
+  <select id="listPermissionsByUserName" resultType="string" parameterType="com.zking.ssm.cxw.model.User">
+    SELECT distinct ri.right_permission FROM sys_user u inner JOIN sys_user_role ur on u.user_id=ur.user_id
+    inner JOIN sys_role r on ur.role_id=r.role_id INNER JOIN sys_role_right rr on r.role_id=rr.rf_role_id
+    INNER JOIN sys_right ri on rr.rf_right_code=ri.right_code
+    WHERE u.user_name= #{userName,jdbcType=VARCHAR}
+   </select>
+  <select id="listRolesByUserName" resultType="string" parameterType="com.zking.ssm.cxw.model.User">
+    SELECT distinct r.role_name from sys_user u INNER JOIN sys_user_role ur on u.user_id=ur.user_id INNER JOIN sys_role r on ur.role_id=r.role_id
+    where u.user_name= #{userName,jdbcType=VARCHAR} and r.role_flag=1
+   </select>
+
+  <insert id="insertByRrid">
+      insert into sys_user_role(user_id, role_id) values(#{uid},#{roleId})
+   </insert>
+
+
+
+
+</mapper>

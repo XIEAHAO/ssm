@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.qx.mapper.RightMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.qx.model.Right" >
+    <constructor >
+      <idArg column="right_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_parent_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_tip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_permission" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="right" type="com.zking.ssm.qx.model.Right" >
+    <constructor >
+      <idArg column="right_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_parent_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_tip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="right_permission" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    right_code, right_parent_code, right_text, right_url, right_tip, right_permission
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_right
+    where right_code = #{rightCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_right
+    where right_code = #{rightCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.qx.model.Right" >
+    insert into sys_right (right_code, right_parent_code, right_text, 
+      right_url, right_tip, right_permission
+      )
+    values (#{rightCode,jdbcType=VARCHAR}, #{rightParentCode,jdbcType=VARCHAR}, #{rightText,jdbcType=VARCHAR}, 
+      #{rightUrl,jdbcType=VARCHAR}, #{rightTip,jdbcType=VARCHAR}, #{rightPermission,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.qx.model.Right" >
+    insert into sys_right
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rightCode != null" >
+        right_code,
+      </if>
+      <if test="rightParentCode != null" >
+        right_parent_code,
+      </if>
+      <if test="rightText != null" >
+        right_text,
+      </if>
+      <if test="rightUrl != null" >
+        right_url,
+      </if>
+      <if test="rightTip != null" >
+        right_tip,
+      </if>
+      <if test="rightPermission != null" >
+        right_permission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rightCode != null" >
+        #{rightCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightParentCode != null" >
+        #{rightParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightText != null" >
+        #{rightText,jdbcType=VARCHAR},
+      </if>
+      <if test="rightUrl != null" >
+        #{rightUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="rightTip != null" >
+        #{rightTip,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPermission != null" >
+        #{rightPermission,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.qx.model.Right" >
+    update sys_right
+    <set >
+      <if test="rightParentCode != null" >
+        right_parent_code = #{rightParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rightText != null" >
+        right_text = #{rightText,jdbcType=VARCHAR},
+      </if>
+      <if test="rightUrl != null" >
+        right_url = #{rightUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="rightTip != null" >
+        right_tip = #{rightTip,jdbcType=VARCHAR},
+      </if>
+      <if test="rightPermission != null" >
+        right_permission = #{rightPermission,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where right_code = #{rightCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.qx.model.Right" >
+    update sys_right
+    set right_parent_code = #{rightParentCode,jdbcType=VARCHAR},
+      right_text = #{rightText,jdbcType=VARCHAR},
+      right_url = #{rightUrl,jdbcType=VARCHAR},
+      right_tip = #{rightTip,jdbcType=VARCHAR},
+      right_permission = #{rightPermission,jdbcType=VARCHAR}
+    where right_code = #{rightCode,jdbcType=VARCHAR}
+  </update>
+
+
+  <select id="listPermissionsByUserName" resultMap="right" parameterType="java.lang.Integer">
+   select ri.* from sys_role r inner JOIN sys_role_right rr on r.role_id = rr.rf_role_id inner JOIN sys_right ri
+   on rr.rf_right_code = ri.right_code where r.role_id= #{roleId} and ri.right_parent_code=-1
+  </select>
+
+
+  <select id="listPermissionsBy" resultMap="right">
+    select distinct ri.* from sys_role r inner JOIN sys_role_right rr on r.role_id = rr.rf_role_id inner JOIN sys_right ri
+    on rr.rf_right_code = ri.right_code where r.role_id= #{roleId} and ri.right_parent_code= #{rightParentCode}
+  </select>
+</mapper>

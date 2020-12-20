@@ -1,7 +1,7 @@
 package com.zking.ssm.base.shiro;
 
-import com.zking.ssm.cxw.model.User;
-import com.zking.ssm.cxw.service.IUserBiz;
+import com.zking.ssm.qx.model.User;
+import com.zking.ssm.qx.service.IUserBiz;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
