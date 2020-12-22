@@ -6,6 +6,6 @@ package com.zking.ssm.redis;
  */
 public class Deom {
     public static void main(String[] args) {
-        System.out.println("asdsdfsgfh");
+        System.out.println("asdsfsafsadsasgfh");
     }
 }
