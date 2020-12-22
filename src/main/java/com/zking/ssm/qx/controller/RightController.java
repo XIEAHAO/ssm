@@ -31,7 +31,9 @@ public class RightController {
 
     @RequestMapping("/right")
     @ResponseBody
-    public Map right(int userRoleId){
+    public Map right(){
+        int userRoleId=8;
+        System.out.println("到这里来啦");
         Map<String,Object> mapper = new HashMap<>();
         List<Right> rights = iright.listPermissionsByUserName(Integer.valueOf(userRoleId));
         for(int i=0;i<rights.size();i++){

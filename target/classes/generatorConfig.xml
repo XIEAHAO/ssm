@@ -6,7 +6,7 @@
     <properties resource="jdbc.properties"/>
 
     <!--指定数据库jdbc驱动jar包的位置-->
-    <classPathEntry location="D:\\repository\\mvn-repository\\mysql\\mysql-connector-java\\5.1.44\\mysql-connector-java-5.1.44.jar"/>
+    <classPathEntry location="E:\\apache-maven-3.5.4\\jar\\mysql\\mysql-connector-java\\5.1.44\\mysql-connector-java-5.1.44.jar"/>
 
 
     <!-- 一个数据库一个context -->
