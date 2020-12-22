@@ -13,10 +13,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Luox
- * @site www.kengni.com
- * @company xxx公司
- * @create  2020-12-18 17:54
+ * @author 家父
+ * @site www.1610802539@qq.com
+ * @company XIE啊豪
+ * @create 2020-12-22 16:52
  */
 @Controller
 @Component
@@ -55,7 +55,7 @@ public class UserController {
         int i = 0;
         long roleId = 0;
         long id = 0;
-        if(message==null){
+        if(message!=null){
             message = "登录成功";
             i  =1;
             User u = userBiz.selectByName(this.user);
@@ -63,7 +63,7 @@ public class UserController {
             id = u.getUserId();
         }
         mapper.put("message",message);
-        mapper.put("da",i);
+        mapper.put("code",i);
         mapper.put("roleId",roleId);
         mapper.put("id",id);
         return mapper;
