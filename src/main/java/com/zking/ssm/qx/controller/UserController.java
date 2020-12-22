@@ -55,7 +55,7 @@ public class UserController {
         int i = 0;
         long roleId = 0;
         long id = 0;
-        if(message==null){
+        if(message!=null){
             message = "登录成功";
             i  =1;
             User u = userBiz.selectByName(this.user);
@@ -63,7 +63,7 @@ public class UserController {
             id = u.getUserId();
         }
         mapper.put("message",message);
-        mapper.put("da",i);
+        mapper.put("code",i);
         mapper.put("roleId",roleId);
         mapper.put("id",id);
         return mapper;
