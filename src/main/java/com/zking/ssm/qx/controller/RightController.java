@@ -39,6 +39,10 @@ public class RightController {
         for(int i=0;i<rights.size();i++){
             List<Right> rights1 = iright.listPermissionsBy(userRoleId, rights.get(i).getRightCode());
             rights.get(i).setRlist(rights1);
+            for (int j=0;j<=rights1.size();i++){
+                System.out.println(rights.get(j));
+            }
+            System.out.println();
         }
         for(int i=0;i<rights.size();i+=1) {
             if(rights.get(i).getRlist().size()==0) {

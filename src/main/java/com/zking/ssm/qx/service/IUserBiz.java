@@ -1,6 +1,7 @@
 package com.zking.ssm.qx.service;
 
 import com.zking.ssm.qx.model.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -14,16 +15,19 @@ public interface IUserBiz {
     /**
      * 登录用户
      */
+    @Transactional(readOnly = true)
     String selectById(User record);
     /**
      * 根据用户名称获取用户信息
      */
+    @Transactional(readOnly = true)
     User selectByName(User record);
     /**
      * 查询指定用户拥有的权限
      * @param user
      * @return
      */
+    @Transactional(readOnly = true)
     Set<String> listPermissionsByUserName(User user);
 
     /**
@@ -31,6 +35,7 @@ public interface IUserBiz {
      * @param user
      * @return
      */
+    @Transactional(readOnly = true)
     Set<String> listRolesByUserName(User user);
 
     /**

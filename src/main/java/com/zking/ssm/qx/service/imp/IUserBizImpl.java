@@ -28,7 +28,9 @@ public class IUserBizImpl implements IUserBiz {
     @Override
     public String selectById(User record) {
         String message = null;
+        System.out.println("到这里了");
         User u = userMapper.selectByName(record);
+        System.out.println("asdasds");
         if (null == u || !PasswordHelper.checkCredentials(record.getUserPassword(), u.getUserSalt(), u.getUserPassword())) {
             message = "帐号或密码错误";
         } else if (new Integer(1).equals(u.getUserLocked())) {

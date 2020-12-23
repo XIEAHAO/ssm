@@ -26,12 +26,6 @@ public class UserController {
     private IUserBiz userBiz;
     private User user = new User();
 
-    @RequestMapping("/index.shtml")
-    public String toLogin(Model model) {
-        System.out.println("toLogin");
-        return "index";
-    }
-
     @RequestMapping("/insert")
     @ResponseBody
     public Map insert(String userName, String userPassword, int userRoleId){
@@ -47,20 +41,36 @@ public class UserController {
     @RequestMapping("/login")
     @ResponseBody
     public Map login(String userName, String userPassword){
-        System.out.printf(userName);
         user.setUserName(userName);
-        user.setUserPassword(userPassword);
         Map<String,Object> mapper = new HashMap<>();
-        String message = userBiz.selectById(user);
+        String message = "";
         int i = 0;
         long roleId = 0;
         long id = 0;
-        if(message!=null){
-            message = "登录成功";
-            i  =1;
-            User u = userBiz.selectByName(this.user);
-            roleId = u.getUserRoleId();
-            id = u.getUserId();
+        if(userBiz.selectByName(this.user)==null){
+            message="账号名不存在喔小兄弟";
+            System.out.println("账号名不存在喔小兄弟");
+            i=0;
+        }else{
+        User f = userBiz.selectByName(this.user);
+            System.out.println(f);
+        if(f.getUserFlag()==0){
+            message="账户已被查封，自己看看自己干的事";
+            System.out.println("账户已被查封，自己看看自己干的事");
+            i=0;
+        }else {
+        if(f.getUserPassword().equals(userPassword)){
+            System.out.println("登录成功");
+            message="登录成功";
+            i=1;
+            id=f.getUserId();
+            roleId=f.getUserRoleId();
+        }else {
+            System.out.println("登录失败,账号密码失败");
+            message="登录失败,账号密码错误";
+            i=0;
+        }
+        }
         }
         mapper.put("message",message);
         mapper.put("code",i);
