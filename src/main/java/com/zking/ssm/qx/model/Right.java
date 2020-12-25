@@ -1,7 +1,6 @@
 package com.zking.ssm.qx.model;
 
 import java.util.List;
-
 public class Right {
     private String rightCode;
 
@@ -84,5 +83,18 @@ public class Right {
 
     public void setRightPermission(String rightPermission) {
         this.rightPermission = rightPermission;
+    }
+
+    @Override
+    public String toString() {
+        return "Right{" +
+                "rightCode='" + rightCode + '\'' +
+                ", rightParentCode='" + rightParentCode + '\'' +
+                ", rightText='" + rightText + '\'' +
+                ", rightUrl='" + rightUrl + '\'' +
+                ", rightTip='" + rightTip + '\'' +
+                ", rightPermission='" + rightPermission + '\'' +
+                ", rlist=" + rlist +
+                '}';
     }
 }

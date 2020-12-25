@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author Luox
- * @site www.kengni.com
- * @company xxx公司
- * @create  2020-12-19 15:50
+ * @author 家父
+ * @site www.1610802539@qq.com
+ * @company XIE啊豪
+ * @create 2020-12-22 16:52
  */
 @Service
 @Scope("prototype")
@@ -31,4 +31,20 @@ public class IRightImpl implements IRight {
     public List<Right> listPermissionsBy(long roleId, String rightParentCode) {
         return rightMapper.listPermissionsBy(roleId,rightParentCode);
     }
+
+    @Override
+    public List listPermissionsByright_parent_code(String  rightParentCode) {
+        return rightMapper.listPermissionsByright_parent_code(rightParentCode);
+    }
+
+    @Override
+    public List listPermissionsNoByUserName(Integer roleId) {
+        return rightMapper.listPermissionsNoByUserName(roleId);
+    }
+
+    @Override
+    public Right listPermissionsByrightCode(String rightCode) {
+        return rightMapper.listPermissionsByrightCode(rightCode);
+    }
+
 }

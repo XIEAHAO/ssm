@@ -65,6 +65,7 @@ public class UserController {
             i=1;
             id=f.getUserId();
             roleId=f.getUserRoleId();
+            System.out.println("roleId"+roleId);
         }else {
             System.out.println("登录失败,账号密码失败");
             message="登录失败,账号密码错误";
