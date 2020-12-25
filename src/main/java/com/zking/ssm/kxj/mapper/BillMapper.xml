@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.kxj.mapper.BillMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.kxj.model.Bill" >
+    <constructor >
+      <idArg column="bill_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bill_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bill_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_receivable" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_capital" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bill_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="bill_sm" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.kxj.model.Bill" >
+    <constructor >
+      <arg column="bill_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bill_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bill_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_receivable" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_capital" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="bill_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="bill_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="bill_sm" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    bill_id, bill_staff_name, bill_staff_id, bill_type, bill_receivable, bill_capital, 
+    bill_status, bill_time, bill_sm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bill
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </select>
+
+  <select id="query" resultMap="row" parameterType="com.zking.ssm.kxj.model.Bill" >
+    select
+    <include refid="Base_Column_List" />
+    from bill
+    where 1=1
+      <if test="billType != null" >
+          and bill_type like concat(concat('%',#{billType}),'%')
+      </if>
+      <if test="billStatus != null" >
+          and bill_status like concat(concat('%',#{billStatus}),'%')
+      </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bill
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.kxj.model.Bill" >
+    insert into bill (bill_id, bill_staff_name, bill_staff_id, 
+      bill_type, bill_receivable, bill_capital, 
+      bill_status, bill_time, bill_sm
+      )
+    values (#{billId,jdbcType=INTEGER}, #{billStaffName,jdbcType=VARCHAR}, #{billStaffId,jdbcType=INTEGER}, 
+      #{billType,jdbcType=VARCHAR}, #{billReceivable,jdbcType=VARCHAR}, #{billCapital,jdbcType=VARCHAR}, 
+      #{billStatus,jdbcType=INTEGER}, #{billTime,jdbcType=TIMESTAMP}, #{billSm,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.kxj.model.Bill" >
+    insert into bill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billId != null" >
+        bill_id,
+      </if>
+      <if test="billStaffName != null" >
+        bill_staff_name,
+      </if>
+      <if test="billStaffId != null" >
+        bill_staff_id,
+      </if>
+      <if test="billType != null" >
+        bill_type,
+      </if>
+      <if test="billReceivable != null" >
+        bill_receivable,
+      </if>
+      <if test="billCapital != null" >
+        bill_capital,
+      </if>
+      <if test="billStatus != null" >
+        bill_status,
+      </if>
+      <if test="billTime != null" >
+        bill_time,
+      </if>
+      <if test="billSm != null" >
+        bill_sm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billId != null" >
+        #{billId,jdbcType=INTEGER},
+      </if>
+      <if test="billStaffName != null" >
+        #{billStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="billStaffId != null" >
+        #{billStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="billType != null" >
+        #{billType,jdbcType=VARCHAR},
+      </if>
+      <if test="billReceivable != null" >
+        #{billReceivable,jdbcType=VARCHAR},
+      </if>
+      <if test="billCapital != null" >
+        #{billCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="billStatus != null" >
+        #{billStatus,jdbcType=INTEGER},
+      </if>
+      <if test="billTime != null" >
+        #{billTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billSm != null" >
+        #{billSm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.kxj.model.Bill" >
+    update bill
+    <set >
+      <if test="billStaffName != null" >
+        bill_staff_name = #{billStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="billStaffId != null" >
+        bill_staff_id = #{billStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="billType != null" >
+        bill_type = #{billType,jdbcType=VARCHAR},
+      </if>
+      <if test="billReceivable != null" >
+        bill_receivable = #{billReceivable,jdbcType=VARCHAR},
+      </if>
+      <if test="billCapital != null" >
+        bill_capital = #{billCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="billStatus != null" >
+        bill_status = #{billStatus,jdbcType=INTEGER},
+      </if>
+      <if test="billTime != null" >
+        bill_time = #{billTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billSm != null" >
+        bill_sm = #{billSm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.kxj.model.Bill" >
+    update bill
+    set bill_staff_name = #{billStaffName,jdbcType=VARCHAR},
+      bill_staff_id = #{billStaffId,jdbcType=INTEGER},
+      bill_type = #{billType,jdbcType=VARCHAR},
+      bill_receivable = #{billReceivable,jdbcType=VARCHAR},
+      bill_capital = #{billCapital,jdbcType=VARCHAR},
+      bill_status = #{billStatus,jdbcType=INTEGER},
+      bill_time = #{billTime,jdbcType=TIMESTAMP},
+      bill_sm = #{billSm,jdbcType=VARCHAR}
+    where bill_id = #{billId,jdbcType=INTEGER}
+  </update>
+</mapper>
