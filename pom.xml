@@ -292,6 +292,13 @@
             <artifactId>disruptor</artifactId>
             <version>${disruptor.version}</version>
         </dependency>
+        <!--MD5所需要的hex包-->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.6</version>
+        </dependency>
+
 
         <!-- **********************  shiro配置  ********************** -->
         <dependency>
