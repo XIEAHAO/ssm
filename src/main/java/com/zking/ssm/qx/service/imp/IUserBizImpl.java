@@ -78,4 +78,14 @@ public class IUserBizImpl implements IUserBiz {
         return userMapper.insertByRrid(record.getUserRoleId(),record.getUserId());
     }
 
+    @Override
+    public int updateByPrimaryKeySelective(User record) {
+        return userMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public List SelectUser(User user) {
+        return userMapper.SelectUser(user);
+    }
+
 }

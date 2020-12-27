@@ -38,6 +38,27 @@ public class UserController {
         mapper.put("message","新增用户成功");
         return mapper;
     }
+    public Map UpPassword(String userName,String Password,String Password1,String Password2){
+        user.setUserName(userName);
+        String message="";
+        User u=userBiz.selectByName(user);
+        if(!u.getUserPassword().equals(Password)){
+            message="密码错误哦，小伙子";
+        }else if(!Password1.equals(Password2)){
+            message="两次密码不一样啊";
+        }else {
+            u.setUserPassword(Password1);
+            message="账户密码修改成功";
+        }
+        Map<String,Object> mapper = new HashMap<>();
+        mapper.put("message",message);
+        return  mapper;
+    }
+    public Map Select(User u){
+        Map<String,Object> mapper = new HashMap<>();
+        mapper.put("list",userBiz.SelectUser(user));
+        return  mapper;
+    }
     @RequestMapping("/login")
     @ResponseBody
     public Map login(String userName, String userPassword){
@@ -47,6 +68,8 @@ public class UserController {
         int i = 0;
         long roleId = 0;
         long id = 0;
+        String aac="";
+        int userFlag=0;
         if(userBiz.selectByName(this.user)==null){
             message="账号名不存在喔小兄弟";
             System.out.println("账号名不存在喔小兄弟");
@@ -61,10 +84,12 @@ public class UserController {
         }else {
         if(f.getUserPassword().equals(userPassword)){
             System.out.println("登录成功");
-            message="登录成功";
+            message="登录成功,欢迎您"+f.getUserName();
             i=1;
             id=f.getUserId();
             roleId=f.getUserRoleId();
+            aac=f.getUserName();
+            userFlag=f.getUserFlag();
             System.out.println("roleId"+roleId);
         }else {
             System.out.println("登录失败,账号密码失败");
@@ -77,6 +102,8 @@ public class UserController {
         mapper.put("code",i);
         mapper.put("roleId",roleId);
         mapper.put("id",id);
+        mapper.put("admin",aac);
+        mapper.put("userFlag",userFlag);
         return mapper;
     }
 

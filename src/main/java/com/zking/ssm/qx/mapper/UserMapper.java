@@ -57,5 +57,10 @@ public interface UserMapper {
      */
     int insertByRrid(@Param("roleId") long roleId, @Param("uid") long uid);
 
-
+    /**
+     * 模糊查询方法
+     * @param user
+     * @return
+     */
+    List SelectUser(User user);
 }
