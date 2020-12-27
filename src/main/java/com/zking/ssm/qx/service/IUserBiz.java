@@ -3,6 +3,7 @@ package com.zking.ssm.qx.service;
 import com.zking.ssm.qx.model.User;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,4 +46,16 @@ public interface IUserBiz {
      */
     int insert(User record);
 
+    /**
+     * 账户密码修改
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKeySelective(User record);
+    /**
+     * 模糊查询方法
+     * @param user
+     * @return
+     */
+    List SelectUser(User user);
 }

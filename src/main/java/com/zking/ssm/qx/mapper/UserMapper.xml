@@ -152,6 +152,13 @@
     SELECT distinct r.role_name from sys_user u INNER JOIN sys_user_role ur on u.user_id=ur.user_id INNER JOIN sys_role r on ur.role_id=r.role_id
     where u.user_name= #{userName,jdbcType=VARCHAR} and r.role_flag=1
    </select>
+  <select id="SelectUser" resultType="java.util.List" parameterType="com.zking.ssm.qx.model.User">
+    SELECT
+    <include refid="Base_Column_List" />
+    from sys_user
+    where 1=1 and u.user_name like concat(concat(’%’,#{userName}),’%’)  and role_flag=#{userRoleId,jdbcType=BIGINT} and user_flag = #{userFlag,jdbcType=INTEGER}
+
+  </select>
 
   <insert id="insertByRrid">
       insert into sys_user_role(user_id, role_id) values(#{uid},#{roleId})
