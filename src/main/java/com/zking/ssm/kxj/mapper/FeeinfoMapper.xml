@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.kxj.mapper.FeeinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.kxj.model.Feeinfo" >
+    <constructor >
+      <idArg column="fee_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_building_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_start_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fee_end_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fee_price" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_start_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_used_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_price_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fee_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_end_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.kxj.model.Feeinfo" >
+    <constructor >
+      <idArg column="fee_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_building_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_start_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fee_end_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fee_price" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_start_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_used_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_price_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fee_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fee_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_end_count" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fee_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    fee_id, fee_house_name, fee_house_id, fee_user_id, fee_user_name, fee_building_name, 
+    fee_start_date, fee_end_date, fee_price, fee_start_count, fee_used_count, fee_price_count, 
+    fee_staff_name, fee_create_time, fee_staff_id, fee_end_count, fee_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from feeinfo
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </select>
+
+  <select id="query" resultMap="row" parameterType="com.zking.ssm.kxj.model.Feeinfo" >
+    select
+    <include refid="Base_Column_List" />
+    from feeinfo
+    where 1=1
+    <if test="feeHouseName != null" >
+      and fee_house_name like concat(concat('%',#{feeHouseName}),'%')
+    </if>
+
+    <if test="feeUserName != null" >
+      and fee_user_name like concat(concat('%',#{feeUserName}),'%')
+    </if>
+
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from feeinfo
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.kxj.model.Feeinfo" >
+    insert into feeinfo (fee_id, fee_house_name, fee_house_id, 
+      fee_user_id, fee_user_name, fee_building_name, 
+      fee_start_date, fee_end_date, fee_price, 
+      fee_start_count, fee_used_count, fee_price_count, 
+      fee_staff_name, fee_create_time, fee_staff_id, 
+      fee_end_count, fee_type)
+    values (#{feeId,jdbcType=INTEGER}, #{feeHouseName,jdbcType=VARCHAR}, #{feeHouseId,jdbcType=INTEGER}, 
+      #{feeUserId,jdbcType=INTEGER}, #{feeUserName,jdbcType=VARCHAR}, #{feeBuildingName,jdbcType=VARCHAR}, 
+      #{feeStartDate,jdbcType=TIMESTAMP}, #{feeEndDate,jdbcType=TIMESTAMP}, #{feePrice,jdbcType=INTEGER}, 
+      #{feeStartCount,jdbcType=INTEGER}, #{feeUsedCount,jdbcType=INTEGER}, #{feePriceCount,jdbcType=INTEGER}, 
+      #{feeStaffName,jdbcType=VARCHAR}, #{feeCreateTime,jdbcType=TIMESTAMP}, #{feeStaffId,jdbcType=INTEGER}, 
+      #{feeEndCount,jdbcType=INTEGER}, #{feeType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.kxj.model.Feeinfo" >
+    insert into feeinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feeId != null" >
+        fee_id,
+      </if>
+      <if test="feeHouseName != null" >
+        fee_house_name,
+      </if>
+      <if test="feeHouseId != null" >
+        fee_house_id,
+      </if>
+      <if test="feeUserId != null" >
+        fee_user_id,
+      </if>
+      <if test="feeUserName != null" >
+        fee_user_name,
+      </if>
+      <if test="feeBuildingName != null" >
+        fee_building_name,
+      </if>
+      <if test="feeStartDate != null" >
+        fee_start_date,
+      </if>
+      <if test="feeEndDate != null" >
+        fee_end_date,
+      </if>
+      <if test="feePrice != null" >
+        fee_price,
+      </if>
+      <if test="feeStartCount != null" >
+        fee_start_count,
+      </if>
+      <if test="feeUsedCount != null" >
+        fee_used_count,
+      </if>
+      <if test="feePriceCount != null" >
+        fee_price_count,
+      </if>
+      <if test="feeStaffName != null" >
+        fee_staff_name,
+      </if>
+      <if test="feeCreateTime != null" >
+        fee_create_time,
+      </if>
+      <if test="feeStaffId != null" >
+        fee_staff_id,
+      </if>
+      <if test="feeEndCount != null" >
+        fee_end_count,
+      </if>
+      <if test="feeType != null" >
+        fee_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feeId != null" >
+        #{feeId,jdbcType=INTEGER},
+      </if>
+      <if test="feeHouseName != null" >
+        #{feeHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeHouseId != null" >
+        #{feeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="feeUserId != null" >
+        #{feeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="feeUserName != null" >
+        #{feeUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeBuildingName != null" >
+        #{feeBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeStartDate != null" >
+        #{feeStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeEndDate != null" >
+        #{feeEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feePrice != null" >
+        #{feePrice,jdbcType=INTEGER},
+      </if>
+      <if test="feeStartCount != null" >
+        #{feeStartCount,jdbcType=INTEGER},
+      </if>
+      <if test="feeUsedCount != null" >
+        #{feeUsedCount,jdbcType=INTEGER},
+      </if>
+      <if test="feePriceCount != null" >
+        #{feePriceCount,jdbcType=INTEGER},
+      </if>
+      <if test="feeStaffName != null" >
+        #{feeStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeCreateTime != null" >
+        #{feeCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeStaffId != null" >
+        #{feeStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="feeEndCount != null" >
+        #{feeEndCount,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null" >
+        #{feeType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.kxj.model.Feeinfo" >
+    update feeinfo
+    <set >
+      <if test="feeHouseName != null" >
+        fee_house_name = #{feeHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeHouseId != null" >
+        fee_house_id = #{feeHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="feeUserId != null" >
+        fee_user_id = #{feeUserId,jdbcType=INTEGER},
+      </if>
+      <if test="feeUserName != null" >
+        fee_user_name = #{feeUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeBuildingName != null" >
+        fee_building_name = #{feeBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeStartDate != null" >
+        fee_start_date = #{feeStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeEndDate != null" >
+        fee_end_date = #{feeEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feePrice != null" >
+        fee_price = #{feePrice,jdbcType=INTEGER},
+      </if>
+      <if test="feeStartCount != null" >
+        fee_start_count = #{feeStartCount,jdbcType=INTEGER},
+      </if>
+      <if test="feeUsedCount != null" >
+        fee_used_count = #{feeUsedCount,jdbcType=INTEGER},
+      </if>
+      <if test="feePriceCount != null" >
+        fee_price_count = #{feePriceCount,jdbcType=INTEGER},
+      </if>
+      <if test="feeStaffName != null" >
+        fee_staff_name = #{feeStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeCreateTime != null" >
+        fee_create_time = #{feeCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feeStaffId != null" >
+        fee_staff_id = #{feeStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="feeEndCount != null" >
+        fee_end_count = #{feeEndCount,jdbcType=INTEGER},
+      </if>
+      <if test="feeType != null" >
+        fee_type = #{feeType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.kxj.model.Feeinfo" >
+    update feeinfo
+    set fee_house_name = #{feeHouseName,jdbcType=VARCHAR},
+      fee_house_id = #{feeHouseId,jdbcType=INTEGER},
+      fee_user_id = #{feeUserId,jdbcType=INTEGER},
+      fee_user_name = #{feeUserName,jdbcType=VARCHAR},
+      fee_building_name = #{feeBuildingName,jdbcType=VARCHAR},
+      fee_start_date = #{feeStartDate,jdbcType=TIMESTAMP},
+      fee_end_date = #{feeEndDate,jdbcType=TIMESTAMP},
+      fee_price = #{feePrice,jdbcType=INTEGER},
+      fee_start_count = #{feeStartCount,jdbcType=INTEGER},
+      fee_used_count = #{feeUsedCount,jdbcType=INTEGER},
+      fee_price_count = #{feePriceCount,jdbcType=INTEGER},
+      fee_staff_name = #{feeStaffName,jdbcType=VARCHAR},
+      fee_create_time = #{feeCreateTime,jdbcType=TIMESTAMP},
+      fee_staff_id = #{feeStaffId,jdbcType=INTEGER},
+      fee_end_count = #{feeEndCount,jdbcType=INTEGER},
+      fee_type = #{feeType,jdbcType=VARCHAR}
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+</mapper>

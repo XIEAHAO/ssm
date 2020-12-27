@@ -1,4 +1,4 @@
-package com.zking.ssm.redis;
+package com.zking.ssm.kxj.redis;
 
 /**
  * @author kxj

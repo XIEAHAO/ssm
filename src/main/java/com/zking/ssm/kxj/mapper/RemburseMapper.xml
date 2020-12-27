@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.kxj.mapper.RemburseMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.kxj.model.Remburse" >
+    <constructor >
+      <idArg column="remburse_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remburse_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remburse_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="remburse_money" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_plan_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remburse_state" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_rejection" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.kxj.model.Remburse" >
+    <constructor >
+      <idArg column="remburse_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remburse_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remburse_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="remburse_money" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_plan_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="remburse_state" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remburse_rejection" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    remburse_id, remburse_staff_id, remburse_staff_name, remburse_type, remburse_time, 
+    remburse_money, remburse_plan_id, remburse_state, remburse_reason, remburse_rejection
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from remburse
+    where remburse_id = #{remburseId,jdbcType=INTEGER}
+  </select>
+
+  <select id="query" resultMap="row" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from remburse
+    where 1=1
+    <if test="remburseId != null" >
+      and remburse_id like concat(concat('%',#{remburseId}),'%')
+    </if>
+    <if test="remburseStaffId != null" >
+      and remburse_staff_id like concat(concat('%',#{remburseStaffId}),'%')
+    </if>
+    <if test="remburseStaffName != null" >
+      and remburse_staff_name like concat(concat('%',#{remburseStaffName}),'%')
+    </if>
+    <if test="remburseType != null" >
+      and remburse_type like concat(concat('%',#{remburseType}),'%')
+    </if>
+    <if test="remburseTime != null" >
+      and remburse_time like concat(concat('%',#{remburseTime,jdbcType=INTEGER}),'%')
+    </if>
+    <if test="remburseMoney != null" >
+      and remburse_money like concat(concat('%',#{remburseMoney}),'%')
+    </if>
+    <if test="rembursePlanId != null" >
+      and remburse_plan_id like concat(concat('%',#{rembursePlanId}),'%')
+    </if>
+    <if test="remburseState != null" >
+      and remburse_state like concat(concat('%',#{remburseState}),'%')
+    </if>
+    <if test="remburseReason != null" >
+      and remburse_reason like concat(concat('%',#{remburseReason}),'%')
+    </if>
+    <if test="remburseRejection != null" >
+      and remburse_rejection like concat(concat('%',#{remburseRejection}),'%')
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from remburse
+    where remburse_id = #{remburseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.kxj.model.Remburse" >
+    insert into remburse (remburse_id, remburse_staff_id, remburse_staff_name, 
+      remburse_type, remburse_time, remburse_money, 
+      remburse_plan_id, remburse_state, remburse_reason, 
+      remburse_rejection)
+    values (#{remburseId,jdbcType=INTEGER}, #{remburseStaffId,jdbcType=INTEGER}, #{remburseStaffName,jdbcType=VARCHAR}, 
+      #{remburseType,jdbcType=VARCHAR}, #{remburseTime,jdbcType=TIMESTAMP}, #{remburseMoney,jdbcType=VARCHAR}, 
+      #{rembursePlanId,jdbcType=INTEGER}, #{remburseState,jdbcType=VARCHAR}, #{remburseReason,jdbcType=VARCHAR}, 
+      #{remburseRejection,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.kxj.model.Remburse" >
+    insert into remburse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="remburseId != null" >
+        remburse_id,
+      </if>
+      <if test="remburseStaffId != null" >
+        remburse_staff_id,
+      </if>
+      <if test="remburseStaffName != null" >
+        remburse_staff_name,
+      </if>
+      <if test="remburseType != null" >
+        remburse_type,
+      </if>
+      <if test="remburseTime != null" >
+        remburse_time,
+      </if>
+      <if test="remburseMoney != null" >
+        remburse_money,
+      </if>
+      <if test="rembursePlanId != null" >
+        remburse_plan_id,
+      </if>
+      <if test="remburseState != null" >
+        remburse_state,
+      </if>
+      <if test="remburseReason != null" >
+        remburse_reason,
+      </if>
+      <if test="remburseRejection != null" >
+        remburse_rejection,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="remburseId != null" >
+        #{remburseId,jdbcType=INTEGER},
+      </if>
+      <if test="remburseStaffId != null" >
+        #{remburseStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="remburseStaffName != null" >
+        #{remburseStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseType != null" >
+        #{remburseType,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseTime != null" >
+        #{remburseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remburseMoney != null" >
+        #{remburseMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="rembursePlanId != null" >
+        #{rembursePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="remburseState != null" >
+        #{remburseState,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseReason != null" >
+        #{remburseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseRejection != null" >
+        #{remburseRejection,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.kxj.model.Remburse" >
+    update remburse
+    <set >
+      <if test="remburseStaffId != null" >
+        remburse_staff_id = #{remburseStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="remburseStaffName != null" >
+        remburse_staff_name = #{remburseStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseType != null" >
+        remburse_type = #{remburseType,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseTime != null" >
+        remburse_time = #{remburseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remburseMoney != null" >
+        remburse_money = #{remburseMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="rembursePlanId != null" >
+        remburse_plan_id = #{rembursePlanId,jdbcType=INTEGER},
+      </if>
+      <if test="remburseState != null" >
+        remburse_state = #{remburseState,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseReason != null" >
+        remburse_reason = #{remburseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="remburseRejection != null" >
+        remburse_rejection = #{remburseRejection,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where remburse_id = #{remburseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.kxj.model.Remburse" >
+    update remburse
+    set remburse_staff_id = #{remburseStaffId,jdbcType=INTEGER},
+      remburse_staff_name = #{remburseStaffName,jdbcType=VARCHAR},
+      remburse_type = #{remburseType,jdbcType=VARCHAR},
+      remburse_time = #{remburseTime,jdbcType=TIMESTAMP},
+      remburse_money = #{remburseMoney,jdbcType=VARCHAR},
+      remburse_plan_id = #{rembursePlanId,jdbcType=INTEGER},
+      remburse_state = #{remburseState,jdbcType=VARCHAR},
+      remburse_reason = #{remburseReason,jdbcType=VARCHAR},
+      remburse_rejection = #{remburseRejection,jdbcType=VARCHAR}
+    where remburse_id = #{remburseId,jdbcType=INTEGER}
+  </update>
+</mapper>
