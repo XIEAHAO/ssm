@@ -3,30 +3,31 @@ package com.zking.ssm.qx.model;
 import java.util.Date;
 
 public class Staff {
+//  员工id
     private Integer staffId;
-
+//  员工姓名
     private String staffName;
-
+//  员工密码
     private String staffPassword;
-
+//  员工邮件
     private String staffEmail;
-
+//  员工身份证
     private String staffSfz;
-
+//  员工电话
     private String staffTel;
-
+//  员工性别
     private String staffSex;
-
+//  员工入职时间
     private Date staffEntrytime;
-
+//  员工工资
     private Integer staffPrice;
-
+//  员工成交单数
     private String staffSuccess;
-
+//  员工奖金
     private String staffBonus;
-
+//  员工离职时间
     private Date staffDepartureTime;
-
+//  员工状态
     private Integer staffStatus;
 
     public Staff(Integer staffId, String staffName, String staffPassword, String staffEmail, String staffSfz, String staffTel, String staffSex, Date staffEntrytime, Integer staffPrice, String staffSuccess, String staffBonus, Date staffDepartureTime, Integer staffStatus) {

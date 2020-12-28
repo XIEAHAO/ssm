@@ -1,15 +1,18 @@
 package com.zking.ssm.qx.controller;
 
+import com.zking.ssm.qx.model.Role;
 import com.zking.ssm.qx.model.User;
+import com.zking.ssm.qx.service.IRole;
 import com.zking.ssm.qx.service.IUserBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +28,8 @@ public class UserController {
     @Autowired
     private IUserBiz userBiz;
     private User user = new User();
-
+    @Autowired
+    private IRole irole;
     @RequestMapping("/insert")
     @ResponseBody
     public Map insert(String userName, String userPassword, int userRoleId){
@@ -54,11 +58,32 @@ public class UserController {
         mapper.put("message",message);
         return  mapper;
     }
+    @RequestMapping("/Select")
+    @ResponseBody
     public Map Select(User u){
         Map<String,Object> mapper = new HashMap<>();
-        mapper.put("list",userBiz.SelectUser(user));
+        if(u.getUserFlag()!=null){
+            u.setUserRoleId((long)u.getUserFlag());
+        }
+        List<User> l=userBiz.SelectUser(u);
+        mapper.put("list",l);
+        for (User v:l){
+            System.out.println(v);
+        }
         return  mapper;
     }
+    @RequestMapping("/SelectRole")
+    @ResponseBody
+    public Map SelectRole(Role role){
+        System.out.println("查询角色"+role);
+        Map<String,Object> mapper = new HashMap<>();
+        List<Role> s=new ArrayList<>();
+        s=irole.SelectAll(role);
+        System.out.println("查询玩了");
+        mapper.put("list",s);
+        return mapper;
+    }
+
     @RequestMapping("/login")
     @ResponseBody
     public Map login(String userName, String userPassword){

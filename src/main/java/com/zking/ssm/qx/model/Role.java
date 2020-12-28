@@ -3,6 +3,18 @@ package com.zking.ssm.qx.model;
 public class Role {
     private Long roleId;
 
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                ", roleDesc='" + roleDesc + '\'' +
+                ", roleFlag=" + roleFlag +
+                ", userId=" + userId +
+                ", permissionId=" + permissionId +
+                '}';
+    }
+
     private String roleName;
 
     private String roleDesc;
@@ -73,15 +85,4 @@ public class Role {
     }
 
 
-    @Override
-    public String toString() {
-        return "Role{" +
-                "roleId=" + roleId +
-                ", roleName='" + roleName + '\'' +
-                ", roleDesc='" + roleDesc + '\'' +
-                ", roleFlag=" + roleFlag +
-                ", userId=" + userId +
-                ", permissionId=" + permissionId +
-                '}';
-    }
 }
