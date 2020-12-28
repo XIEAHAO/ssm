@@ -25,10 +25,18 @@ public class HouseBasichireinfoController {
     @RequestMapping("/query")
     @ResponseBody
     public List query(Housebasichireinfo record){
-        System.out.println("11111111111");
+        System.out.println("aaaaa");
         List list=iHousebasichireinfoService.query(record);
-
         return list;
 
+    }
+    @RequestMapping("insert")
+    @ResponseBody
+    public void add(Housebasichireinfo record){
+        System.out.println("11111111111");
+//        record.setInfoEndDate(record.getInfoCrateTime());
+//        record.setInfoStartDate(record.getInfoCrateTime());
+        iHousebasichireinfoService.insert(record);
+        System.out.println("2222222222");
     }
 }

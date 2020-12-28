@@ -1,6 +1,5 @@
 package com.zking.ssm.kxj.controller;
 
-import com.zking.ssm.kxj.model.Bill;
 import com.zking.ssm.kxj.model.Contractinfo;
 import com.zking.ssm.kxj.service.IContractinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.xml.ws.soap.Addressing;
 import java.util.List;
 
 /**

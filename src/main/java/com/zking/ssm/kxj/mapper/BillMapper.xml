@@ -14,7 +14,6 @@
       <arg column="bill_sm" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
-
   <resultMap id="row" type="com.zking.ssm.kxj.model.Bill" >
     <constructor >
       <arg column="bill_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -45,12 +44,12 @@
     <include refid="Base_Column_List" />
     from bill
     where 1=1
-      <if test="billType != null" >
-          and bill_type like concat(concat('%',#{billType}),'%')
-      </if>
-      <if test="billStatus != null" >
-          and bill_status like concat(concat('%',#{billStatus}),'%')
-      </if>
+    <if test="billType != null" >
+      and bill_type like concat(concat('%',#{billType}),'%')
+    </if>
+    <if test="billStatus != null" >
+      and bill_status like concat(concat('%',#{billStatus}),'%')
+    </if>
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

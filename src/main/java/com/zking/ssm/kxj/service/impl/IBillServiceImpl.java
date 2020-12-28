@@ -26,14 +26,14 @@ public class IBillServiceImpl implements IBillService {
 
     @Override
     public int insert(Bill record) {
-        billMapper.insert(record);
-        return 0;
+
+        return billMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Bill record) {
-        billMapper.insertSelective(record);
-        return 0;
+        int i= billMapper.insertSelective(record);
+        return i;
     }
 
     @Override

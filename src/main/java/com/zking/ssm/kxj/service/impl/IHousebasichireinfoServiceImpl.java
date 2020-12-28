@@ -20,38 +20,38 @@ public class IHousebasichireinfoServiceImpl implements IHousebasichireinfoServic
     private HousebasichireinfoMapper housebasichireinfoMapper;
     @Override
     public int deleteByPrimaryKey(Integer infoId) {
-        housebasichireinfoMapper.deleteByPrimaryKey(infoId);
-        return 0;
+
+        return  housebasichireinfoMapper.deleteByPrimaryKey(infoId);
     }
 
     @Override
     public int insert(Housebasichireinfo record) {
-        housebasichireinfoMapper.insert(record);
-        return 0;
+
+        return  housebasichireinfoMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Housebasichireinfo record) {
-        housebasichireinfoMapper.insertSelective(record);
-        return 0;
+
+        return housebasichireinfoMapper.insertSelective(record);
     }
 
     @Override
     public Housebasichireinfo selectByPrimaryKey(Integer infoId) {
-        housebasichireinfoMapper.selectByPrimaryKey(infoId);
-        return null;
+
+        return housebasichireinfoMapper.selectByPrimaryKey(infoId);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Housebasichireinfo record) {
-        housebasichireinfoMapper.updateByPrimaryKeySelective(record);
-        return 0;
+
+        return housebasichireinfoMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Housebasichireinfo record) {
-        housebasichireinfoMapper.updateByPrimaryKey(record);
-        return 0;
+
+        return housebasichireinfoMapper.updateByPrimaryKey(record);
     }
 
     @Override

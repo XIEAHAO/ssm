@@ -52,7 +52,7 @@
     <if test="infoUserName != null" >
       and info_user_name like concat(concat('%',#{infoUserName}),'%')
     </if>
-    <if test="infoStaffName != null" >
+    <if test="infoHouseId != null" >
       and info_house_id like concat(concat('%',#{infoHouseId}),'%')
     </if>
   </select>
@@ -95,9 +95,7 @@
       <if test="infoEndDate != null" >
         info_end_date,
       </if>
-      <if test="infoCrateTime != null" >
         info_crate_time,
-      </if>
       <if test="infoHousePrice != null" >
         info_house_price,
       </if>

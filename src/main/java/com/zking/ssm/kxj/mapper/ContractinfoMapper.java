@@ -1,6 +1,5 @@
 package com.zking.ssm.kxj.mapper;
 
-import com.zking.ssm.kxj.model.Bill;
 import com.zking.ssm.kxj.model.Contractinfo;
 
 import java.util.List;

@@ -3,6 +3,7 @@ package com.zking.ssm.kxj.mapper;
 import com.zking.ssm.kxj.model.Bill;
 
 import java.util.List;
+
 public interface BillMapper {
     int deleteByPrimaryKey(Integer billId);
 
@@ -15,6 +16,5 @@ public interface BillMapper {
     int updateByPrimaryKeySelective(Bill record);
 
     int updateByPrimaryKey(Bill record);
-
     List query(Bill record);
 }

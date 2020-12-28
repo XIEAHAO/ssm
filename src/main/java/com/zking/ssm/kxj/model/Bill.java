@@ -1,11 +1,8 @@
 package com.zking.ssm.kxj.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.oracle.webservices.internal.api.databinding.DatabindingMode;
 
 import java.util.Date;
-
-
 
 public class Bill {
     @Override
