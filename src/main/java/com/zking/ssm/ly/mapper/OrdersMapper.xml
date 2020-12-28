@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.ly.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.ly.model.Orders" >
+    <constructor >
+      <idArg column="order_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_end_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_staff_id1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_staff_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_remarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_staff_id2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_staff_id3" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_staff_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_staff_name3" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.ly.model.Orders" >
+    <constructor >
+      <arg column="order_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_end_date" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="order_staff_id1" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_staff_name1" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_remarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_staff_id2" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_staff_id3" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_staff_name2" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_staff_name3" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    order_id, order_user_id, order_house_id, order_time, order_end_date, order_staff_id1, 
+    order_staff_name1, order_user_name, order_house_name, order_status, order_remarks, 
+    order_create_time, order_staff_id2, order_staff_id3, order_staff_name2, order_staff_name3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orders
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.ly.model.Orders" >
+    insert into orders (order_id, order_user_id, order_house_id,
+      order_time, order_end_date, order_staff_id1, 
+      order_staff_name1, order_user_name, order_house_name, 
+      order_status, order_remarks, order_create_time, 
+      order_staff_id2, order_staff_id3, order_staff_name2,
+      order_staff_name3)
+    values (#{orderId,jdbcType=INTEGER}, #{orderUserId,jdbcType=INTEGER}, #{orderHouseId,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=DATE}, #{orderEndDate,jdbcType=DATE}, #{orderStaffId1,jdbcType=INTEGER}, 
+      #{orderStaffName1,jdbcType=VARCHAR}, #{orderUserName,jdbcType=VARCHAR}, #{orderHouseName,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=INTEGER}, #{orderRemarks,jdbcType=VARCHAR}, #{orderCreateTime,jdbcType=TIMESTAMP}, 
+      #{orderStaffId2,jdbcType=INTEGER}, #{orderStaffId3,jdbcType=INTEGER}, #{orderStaffName2,jdbcType=VARCHAR},
+      #{orderStaffName3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.ly.model.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderUserId != null" >
+        order_user_id,
+      </if>
+      <if test="orderHouseId != null" >
+        order_house_id,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="orderEndDate != null" >
+        order_end_date,
+      </if>
+      <if test="orderStaffId1 != null" >
+        order_staff_id1,
+      </if>
+      <if test="orderStaffName1 != null" >
+        order_staff_name1,
+      </if>
+      <if test="orderUserName != null" >
+        order_user_name,
+      </if>
+      <if test="orderHouseName != null" >
+        order_house_name,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderRemarks != null" >
+        order_remarks,
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time,
+      </if>
+      <if test="orderStaffId2 != null" >
+        order_staff_id2,
+      </if>
+      <if test="orderStaffId3 != null" >
+        order_staff_id3,
+      </if>
+      <if test="orderStaffName2 != null" >
+        order_staff_name2,
+      </if>
+      <if test="orderStaffName3 != null" >
+        order_staff_name3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderUserId != null" >
+        #{orderUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderHouseId != null" >
+        #{orderHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=DATE},
+      </if>
+      <if test="orderEndDate != null" >
+        #{orderEndDate,jdbcType=DATE},
+      </if>
+      <if test="orderStaffId1 != null" >
+        #{orderStaffId1,jdbcType=INTEGER},
+      </if>
+      <if test="orderStaffName1 != null" >
+        #{orderStaffName1,jdbcType=VARCHAR},
+      </if>
+      <if test="orderUserName != null" >
+        #{orderUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderHouseName != null" >
+        #{orderHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderRemarks != null" >
+        #{orderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateTime != null" >
+        #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStaffId2 != null" >
+        #{orderStaffId2,jdbcType=INTEGER},
+      </if>
+      <if test="orderStaffId3 != null" >
+        #{orderStaffId3,jdbcType=INTEGER},
+      </if>
+      <if test="orderStaffName2 != null" >
+        #{orderStaffName2,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStaffName3 != null" >
+        #{orderStaffName3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.ly.model.Orders" >
+    update orders
+    <set >
+      <if test="orderUserId != null" >
+        order_user_id = #{orderUserId,jdbcType=INTEGER},
+      </if>
+      <if test="orderHouseId != null" >
+        order_house_id = #{orderHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=DATE},
+      </if>
+      <if test="orderEndDate != null" >
+        order_end_date = #{orderEndDate,jdbcType=DATE},
+      </if>
+      <if test="orderStaffId1 != null" >
+        order_staff_id1 = #{orderStaffId1,jdbcType=INTEGER},
+      </if>
+      <if test="orderStaffName1 != null" >
+        order_staff_name1 = #{orderStaffName1,jdbcType=VARCHAR},
+      </if>
+      <if test="orderUserName != null" >
+        order_user_name = #{orderUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderHouseName != null" >
+        order_house_name = #{orderHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderRemarks != null" >
+        order_remarks = #{orderRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCreateTime != null" >
+        order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStaffId2 != null" >
+        order_staff_id2 = #{orderStaffId2,jdbcType=INTEGER},
+      </if>
+      <if test="orderStaffId3 != null" >
+        order_staff_id3 = #{orderStaffId3,jdbcType=INTEGER},
+      </if>
+      <if test="orderStaffName2 != null" >
+        order_staff_name2 = #{orderStaffName2,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStaffName3 != null" >
+        order_staff_name3 = #{orderStaffName3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.ly.model.Orders" >
+    update orders
+    set order_user_id = #{orderUserId,jdbcType=INTEGER},
+      order_house_id = #{orderHouseId,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=DATE},
+      order_end_date = #{orderEndDate,jdbcType=DATE},
+      order_staff_id1 = #{orderStaffId1,jdbcType=INTEGER},
+      order_staff_name1 = #{orderStaffName1,jdbcType=VARCHAR},
+      order_user_name = #{orderUserName,jdbcType=VARCHAR},
+      order_house_name = #{orderHouseName,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_remarks = #{orderRemarks,jdbcType=VARCHAR},
+      order_create_time = #{orderCreateTime,jdbcType=TIMESTAMP},
+      order_staff_id2 = #{orderStaffId2,jdbcType=INTEGER},
+      order_staff_id3 = #{orderStaffId3,jdbcType=INTEGER},
+      order_staff_name2 = #{orderStaffName2,jdbcType=VARCHAR},
+      order_staff_name3 = #{orderStaffName3,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAllOrders" resultMap="row" parameterType="com.zking.ssm.ly.model.Orders" >
+    select
+    <include refid="Base_Column_List" />
+    from orders
+    where 1=1
+    <if test="orderId != null" >
+      and order_id like  concat(concat('%',#{orderId}),'%')
+    </if>
+
+    <if test="orderUserId != null" >
+      and order_user_id like  concat(concat('%',#{orderUserId}),'%')
+    </if>
+
+    <if test="orderHouseId != null" >
+    and order_house_id like  concat(concat('%',#{orderHouseId}),'%')
+    </if>
+
+    <if test="orderTime != null" >
+      and order_time like  concat(concat('%',#{orderTime}),'%')
+    </if>
+
+    <if test="orderEndDate != null" >
+      and order_end_date like  concat(concat('%',#{orderEndDate,jdbcType=INTEGER}),'%')
+    </if>
+
+    <if test="orderStaffId1 != null" >
+      and order_staff_id1 like  concat(concat('%',#{orderStaffId1}),'%')
+    </if>
+
+    <if test="orderStaffName1 != null" >
+      and order_staff_name1 like  concat(concat('%',#{orderStaffName1}),'%')
+    </if>
+
+    <if test="orderUserName != null" >
+      and order_user_name like  concat(concat('%',#{orderUserName}),'%')
+    </if>
+
+    <if test="orderHouseName != null" >
+      and order_house_name like  concat(concat('%',#{orderHouseName}),'%')
+    </if>
+
+    <if test="orderStatus != null" >
+      and order_status like  concat(concat('%',#{orderStatus}),'%')
+    </if>
+
+    <if test="orderRemarks != null" >
+      and order_remarks like  concat(concat('%',#{orderRemarks}),'%')
+    </if>
+
+    <if test="orderCreateTime != null" >
+      and order_create_time like  concat(concat('%',#{orderCreateTime,jdbcType=INTEGER}),'%')
+    </if>
+
+    <if test="orderStaffId2 != null" >
+      and order_staff_id2 like  concat(concat('%',#{orderStaffId2}),'%')
+    </if>
+
+    <if test="orderStaffId3 != null" >
+      and order_staff_id3 like  concat(concat('%',#{orderStaffId3}),'%')
+    </if>
+
+    <if test="orderStaffName2 != null" >
+      and order_staff_name2 like  concat(concat('%',#{orderStaffName2}),'%')
+    </if>
+
+    <if test="orderStaffName3 != null" >
+      and order_staff_name3 like  concat(concat('%',#{orderStaffName3}),'%')
+    </if>
+
+  </select>
+
+</mapper>
