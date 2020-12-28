@@ -2,8 +2,10 @@ package com.zking.ssm.qx.controller;
 
 import com.zking.ssm.qx.model.Role;
 import com.zking.ssm.qx.model.User;
+import com.zking.ssm.qx.model.Users;
 import com.zking.ssm.qx.service.IRole;
 import com.zking.ssm.qx.service.IUserBiz;
+import com.zking.ssm.qx.service.IUsers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class UserController {
     private User user = new User();
     @Autowired
     private IRole irole;
+    @Autowired
+    private IUsers iUsers;
+
     @RequestMapping("/insert")
     @ResponseBody
     public Map insert(String userName, String userPassword, int userRoleId){
@@ -42,6 +47,8 @@ public class UserController {
         mapper.put("message","新增用户成功");
         return mapper;
     }
+    @RequestMapping("/UpdatePassword")
+    @ResponseBody
     public Map UpPassword(String userName,String Password,String Password1,String Password2){
         user.setUserName(userName);
         String message="";
@@ -58,6 +65,21 @@ public class UserController {
         mapper.put("message",message);
         return  mapper;
     }
+
+    @RequestMapping("/SelectUsers")
+    @ResponseBody
+    public Map SelectUsers(Users users){
+        System.out.println("传过来的对象"+users);
+        System.out.println("调用了SelectUSers方法");
+        Map<String,Object> mapper = new HashMap<>();
+        List<Users> s=iUsers.SelectUsers(users);
+        for (Users u :s){
+            System.out.println("传过来的对象"+s);
+        }
+        mapper.put("list",s);
+        return  mapper;
+    }
+
     @RequestMapping("/Select")
     @ResponseBody
     public Map Select(User u){

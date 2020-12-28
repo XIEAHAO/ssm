@@ -3,24 +3,25 @@ package com.zking.ssm.qx.model;
 import java.util.Date;
 
 public class Users {
+//  用户id
     private Integer userId;
-
+//  用户姓名
     private String userName;
-
+//  用户类型
     private String userType;
-
+//  用户密码
     private String userPassword;
-
+//  用户电话
     private String userTel;
-
+//  用户身份证
     private String userSfz;
-
+//  用户性别
     private String userSex;
-
+//  用户工作
     private String userJob;
-
+//  用户邮件
     private String userEmail;
-
+//  用户创建时间
     private Date userCreateTime;
 
     public Users(Integer userId, String userName, String userType, String userPassword, String userTel, String userSfz, String userSex, String userJob, String userEmail, Date userCreateTime) {
@@ -118,5 +119,21 @@ public class Users {
 
     public void setUserCreateTime(Date userCreateTime) {
         this.userCreateTime = userCreateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userTel='" + userTel + '\'' +
+                ", userSfz='" + userSfz + '\'' +
+                ", userSex='" + userSex + '\'' +
+                ", userJob='" + userJob + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userCreateTime=" + userCreateTime +
+                '}';
     }
 }
