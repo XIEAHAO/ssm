@@ -25,10 +25,29 @@
     from users
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
-  <select id="SelectUsers" resultMap="BaseResultMap" resultType="com.zking.ssm.qx.model.Users">
-    select <include refid="Base_Column_List" /> from users
 
+  <select id="SelectUsers" resultMap="BaseResultMap" resultType="com.zking.ssm.qx.model.Users">
+    select <include refid="Base_Column_List" /> from users where 1=1
+    <if test="userName != null" >
+      and user_name like concat(concat('%',#{userName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="userId != null" >
+      and user_id like concat(concat('%',#{userId,jdbcType=INTEGER}),'%')
+    </if>
+    <if test="userType != null" >
+      and user_type like concat(concat('%',#{userType,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="userTel != null" >
+      and user_tel like concat(concat('%',#{userTel,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="userSex != null" >
+    and user_sex like concat(concat('%',#{userSex,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="userEmail != null" >
+    and user_email like concat(concat('%',#{userEmail,jdbcType=VARCHAR}),'%')
+     </if>
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from users
     where user_id = #{userId,jdbcType=INTEGER}

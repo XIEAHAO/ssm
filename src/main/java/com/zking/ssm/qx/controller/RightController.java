@@ -36,7 +36,7 @@ public class RightController {
         System.out.println("到这里来啦");
         Map<String,Object> mapper = new HashMap<>();
         List<Right> rights = iright.listPermissionsByUserName(Integer.valueOf(userRoleId));
-        List<Right> righ=   iright.listPermissionsNoByUserName(Integer.valueOf(userRoleId));
+        List<Right> righ= iright.listPermissionsNoByUserName(Integer.valueOf(userRoleId));
         List<String> bb=new ArrayList<String>();
         for(Right i : rights){
             i.setRlist(iright.listPermissionsByright_parent_code(i.getRightCode()));

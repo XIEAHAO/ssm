@@ -3,6 +3,7 @@ package com.zking.ssm.qx.controller;
 import com.zking.ssm.qx.model.Role;
 import com.zking.ssm.qx.model.User;
 import com.zking.ssm.qx.model.Users;
+import com.zking.ssm.qx.service.IRight;
 import com.zking.ssm.qx.service.IRole;
 import com.zking.ssm.qx.service.IUserBiz;
 import com.zking.ssm.qx.service.IUsers;
@@ -34,6 +35,8 @@ public class UserController {
     private IRole irole;
     @Autowired
     private IUsers iUsers;
+    @Autowired
+    private IRight iright;
 
     @RequestMapping("/insert")
     @ResponseBody
@@ -77,6 +80,56 @@ public class UserController {
             System.out.println("传过来的对象"+s);
         }
         mapper.put("list",s);
+        return  mapper;
+    }
+
+    @RequestMapping("/SeleRight")
+    @ResponseBody
+    public Map SeleRight(User u){
+        System.out.println("传过来的对象"+u);
+        Map<String,Object> mapper = new HashMap<>();
+        return mapper;
+    }
+
+    @RequestMapping("/UpdateZt")
+    @ResponseBody
+    public Map UpdateZt(String userName,int userId){
+        System.out.println("到这里了"+userName);
+        user.setUserName(userName);
+        User u=userBiz.selectByName(user);
+        if(u.getUserFlag()==1){
+            u.setUserFlag(0);
+        }else {
+            u.setUserFlag(1);
+        }
+        if(userBiz.updateByPrimaryKeySelective(u)>0){
+            String message="修改成功";
+        }else {
+            String message="修改失败";
+        }
+        String message="";
+        Map<String,Object> mapper = new HashMap<>();
+        mapper.put("message",message);
+        return  mapper;
+    }
+
+    @RequestMapping("/UpdateJsZt")
+    @ResponseBody
+    public Map UpdateJsZt(Role r){
+        Role a= irole.selectByPrimaryKey(r.getRoleId());
+        System.out.println("对象"+a);
+        String message="";
+        if(a.getRoleFlag()==1){
+            a.setRoleFlag(0);
+            irole.updateByPrimaryKeySelective(a);
+            message="禁用成功";
+        }else {
+            a.setRoleFlag(1);
+            irole.updateByPrimaryKeySelective(a);
+            message="开启成功";
+        }
+        Map<String,Object> mapper = new HashMap<>();
+        mapper.put("message",message);
         return  mapper;
     }
 
