@@ -57,5 +57,5 @@ public interface IUserBiz {
      * @param user
      * @return
      */
-    List SelectUser(User user);
+    List<User> SelectUser(User user);
 }

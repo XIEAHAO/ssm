@@ -84,7 +84,7 @@ public class IUserBizImpl implements IUserBiz {
     }
 
     @Override
-    public List SelectUser(User user) {
+    public List<User> SelectUser(User user) {
         return userMapper.SelectUser(user);
     }
 

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.ly.mapper.VacateMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.ly.model.Vacate" >
+    <constructor >
+      <idArg column="vacate_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="vacate_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="vacate_fate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.ly.model.Vacate" >
+    <constructor >
+      <arg column="vacate_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="vacate_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="vacate_fate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="vacate_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    vacate_id, vacate_status, vacate_staff_id, vacate_name, vacate_date, vacate_fate, 
+    vacate_text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vacate
+    where vacate_id = #{vacateId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vacate
+    where vacate_id = #{vacateId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.ly.model.Vacate" >
+    insert into vacate (vacate_id, vacate_status, vacate_staff_id, 
+      vacate_name, vacate_date, vacate_fate, 
+      vacate_text)
+    values (#{vacateId,jdbcType=INTEGER}, #{vacateStatus,jdbcType=VARCHAR}, #{vacateStaffId,jdbcType=INTEGER}, 
+      #{vacateName,jdbcType=VARCHAR}, #{vacateDate,jdbcType=TIMESTAMP}, #{vacateFate,jdbcType=INTEGER}, 
+      #{vacateText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.ly.model.Vacate" >
+    insert into vacate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vacateId != null" >
+        vacate_id,
+      </if>
+      <if test="vacateStatus != null" >
+        vacate_status,
+      </if>
+      <if test="vacateStaffId != null" >
+        vacate_staff_id,
+      </if>
+      <if test="vacateName != null" >
+        vacate_name,
+      </if>
+      <if test="vacateDate != null" >
+        vacate_date,
+      </if>
+      <if test="vacateFate != null" >
+        vacate_fate,
+      </if>
+      <if test="vacateText != null" >
+        vacate_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vacateId != null" >
+        #{vacateId,jdbcType=INTEGER},
+      </if>
+      <if test="vacateStatus != null" >
+        #{vacateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="vacateStaffId != null" >
+        #{vacateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="vacateName != null" >
+        #{vacateName,jdbcType=VARCHAR},
+      </if>
+      <if test="vacateDate != null" >
+        #{vacateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vacateFate != null" >
+        #{vacateFate,jdbcType=INTEGER},
+      </if>
+      <if test="vacateText != null" >
+        #{vacateText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.ly.model.Vacate" >
+    update vacate
+    <set >
+      <if test="vacateStatus != null" >
+        vacate_status = #{vacateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="vacateStaffId != null" >
+        vacate_staff_id = #{vacateStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="vacateName != null" >
+        vacate_name = #{vacateName,jdbcType=VARCHAR},
+      </if>
+      <if test="vacateDate != null" >
+        vacate_date = #{vacateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vacateFate != null" >
+        vacate_fate = #{vacateFate,jdbcType=INTEGER},
+      </if>
+      <if test="vacateText != null" >
+        vacate_text = #{vacateText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vacate_id = #{vacateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.ly.model.Vacate" >
+    update vacate
+    set vacate_status = #{vacateStatus,jdbcType=VARCHAR},
+      vacate_staff_id = #{vacateStaffId,jdbcType=INTEGER},
+      vacate_name = #{vacateName,jdbcType=VARCHAR},
+      vacate_date = #{vacateDate,jdbcType=TIMESTAMP},
+      vacate_fate = #{vacateFate,jdbcType=INTEGER},
+      vacate_text = #{vacateText,jdbcType=VARCHAR}
+    where vacate_id = #{vacateId,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAllVacate" resultMap="row" parameterType="com.zking.ssm.ly.model.Vacate" >
+    select
+    <include refid="Base_Column_List" />
+    from vacate
+    where 1=1
+    <if test="vacateId != null" >
+      and vacate_id like  concat(concat('%',#{vacateId}),'%')
+    </if>
+
+    <if test="vacateStaffId != null" >
+      and vacate_staff_id like  concat(concat('%',#{vacateStaffId}),'%')
+    </if>
+
+    <if test="vacateName != null" >
+      and vacate_name like  concat(concat('%',#{vacateName}),'%')
+    </if>
+
+    <if test="vacateDate != null" >
+      and vacate_date like  concat(concat('%',#{vacateDate,jdbcType=INTEGER}),'%')
+    </if>
+
+    <if test="vacateFate != null" >
+      and vacate_fate like  concat(concat('%',#{vacateFate}),'%')
+    </if>
+
+    <if test="vacateText != null" >
+      and vacate_text like  concat(concat('%',#{vacateText}),'%')
+    </if>
+
+    <if test="vacateStatus != null" >
+      and vacate_status like  concat(concat('%',#{vacateStatus}),'%')
+    </if>
+  </select>
+
+</mapper>

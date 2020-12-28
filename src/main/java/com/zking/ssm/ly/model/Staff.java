@@ -1,34 +1,37 @@
-package com.zking.ssm.qx.model;
+package com.zking.ssm.ly.model;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
 public class Staff {
-//  员工id
     private Integer staffId;
-//  员工姓名
+
     private String staffName;
-//  员工密码
+
     private String staffPassword;
-//  员工邮件
+
     private String staffEmail;
-//  员工身份证
+
     private String staffSfz;
-//  员工电话
+
     private String staffTel;
-//  员工性别
+
     private String staffSex;
-//  员工入职时间
+
     private Date staffEntrytime;
-//  员工工资
+
     private Integer staffPrice;
-//  员工成交单数
+
     private String staffSuccess;
-//  员工奖金
+
     private String staffBonus;
-//  员工离职时间
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date staffDepartureTime;
-//  员工状态
+
     private Integer staffStatus;
+
+
 
     public Staff(Integer staffId, String staffName, String staffPassword, String staffEmail, String staffSfz, String staffTel, String staffSex, Date staffEntrytime, Integer staffPrice, String staffSuccess, String staffBonus, Date staffDepartureTime, Integer staffStatus) {
         this.staffId = staffId;
@@ -152,5 +155,24 @@ public class Staff {
 
     public void setStaffStatus(Integer staffStatus) {
         this.staffStatus = staffStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffId=" + staffId +
+                ", staffName='" + staffName + '\'' +
+                ", staffPassword='" + staffPassword + '\'' +
+                ", staffEmail='" + staffEmail + '\'' +
+                ", staffSfz='" + staffSfz + '\'' +
+                ", staffTel='" + staffTel + '\'' +
+                ", staffSex='" + staffSex + '\'' +
+                ", staffEntrytime=" + staffEntrytime +
+                ", staffPrice=" + staffPrice +
+                ", staffSuccess='" + staffSuccess + '\'' +
+                ", staffBonus='" + staffBonus + '\'' +
+                ", staffDepartureTime=" + staffDepartureTime +
+                ", staffStatus=" + staffStatus +
+                '}';
     }
 }
