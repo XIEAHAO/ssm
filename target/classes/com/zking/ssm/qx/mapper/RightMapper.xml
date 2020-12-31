@@ -130,4 +130,15 @@
     select distinct ri.* from sys_role r inner JOIN sys_role_right rr on r.role_id = rr.rf_role_id inner JOIN sys_right ri
     on rr.rf_right_code = ri.right_code where r.role_id= #{roleId} and ri.right_parent_code= #{rightParentCode}
   </select>
+  <select id="listPermissionsByright_parent_code" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT * FROM sys_right WHERE right_parent_code= #{rightParentCode}
+  </select>
+  <select id="listPermissionsNoByUserName" resultMap="right" parameterType="java.lang.Integer">
+    select ri.* from sys_role r inner JOIN sys_role_right rr on r.role_id = rr.rf_role_id inner JOIN sys_right ri
+   on rr.rf_right_code = ri.right_code where r.role_id= #{roleId} and ri.right_parent_code!=-1
+  </select>
+  <select id="listPermissionsByrightCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    SELECT * FROM sys_right WHERE right_code= #{rightCode}
+  </select>
+
 </mapper>

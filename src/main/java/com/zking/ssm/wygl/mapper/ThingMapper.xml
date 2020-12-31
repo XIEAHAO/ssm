@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.wygl.mapper.ThingMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.wygl.model.Thing" >
+    <constructor >
+      <idArg column="thing_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="thing_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="thing_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.zking.ssm.wygl.model.Thing" >
+    <constructor >
+      <arg column="thing_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="thing_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="thing_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thing_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    thing_id, thing_name, thing_house_id, thing_status, thing_create_time, thing_staff_id, 
+    thing_staff_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from thing
+    where thing_id = #{thingId,jdbcType=INTEGER}
+  </select>
+  <select id="queryAll" resultMap="row" parameterType="com.zking.ssm.wygl.model.Thing" >
+    select
+    <include refid="Base_Column_List" />
+    from thing
+    where thing_status=1
+    <!--<if test="thingStatus !=null">-->
+      <!--and thing_status like  concat(concat('%',#{thingStatus,jdbcType=VARCHAR}),'%')-->
+    <!--</if>-->
+    <if test="thingName !=null">
+      and thing_name like  concat(concat('%',#{thingName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="thingStaffName !=null">
+      and thing_staff_name like  concat(concat('%',#{thingStaffName,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="thingHouseId !=null">
+      and thing_house_id like  concat(concat('%',#{thingHouseId,jdbcType=INTEGER}),'%')
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from thing
+    where thing_id = #{thingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.wygl.model.Thing" >
+    insert into thing (thing_id, thing_name, thing_house_id, 
+      thing_status, thing_create_time, thing_staff_id, 
+      thing_staff_name)
+    values (#{thingId,jdbcType=INTEGER}, #{thingName,jdbcType=VARCHAR}, #{thingHouseId,jdbcType=INTEGER}, 
+      #{thingStatus,jdbcType=INTEGER}, #{thingCreateTime,jdbcType=TIMESTAMP}, #{thingStaffId,jdbcType=INTEGER}, 
+      #{thingStaffName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.wygl.model.Thing" >
+    insert into thing
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="thingId != null" >
+        thing_id,
+      </if>
+      <if test="thingName != null" >
+        thing_name,
+      </if>
+      <if test="thingHouseId != null" >
+        thing_house_id,
+      </if>
+      <if test="thingStatus != null" >
+        thing_status,
+      </if>
+      <if test="thingCreateTime != null" >
+        thing_create_time,
+      </if>
+      <if test="thingStaffId != null" >
+        thing_staff_id,
+      </if>
+      <if test="thingStaffName != null" >
+        thing_staff_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="thingId != null" >
+        #{thingId,jdbcType=INTEGER},
+      </if>
+      <if test="thingName != null" >
+        #{thingName,jdbcType=VARCHAR},
+      </if>
+      <if test="thingHouseId != null" >
+        #{thingHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="thingStatus != null" >
+        #{thingStatus,jdbcType=INTEGER},
+      </if>
+      <if test="thingCreateTime != null" >
+        #{thingCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thingStaffId != null" >
+        #{thingStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="thingStaffName != null" >
+        #{thingStaffName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.wygl.model.Thing" >
+    update thing
+    <set >
+      <if test="thingName != null" >
+        thing_name = #{thingName,jdbcType=VARCHAR},
+      </if>
+      <if test="thingHouseId != null" >
+        thing_house_id = #{thingHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="thingStatus != null" >
+        thing_status = #{thingStatus,jdbcType=INTEGER},
+      </if>
+      <if test="thingCreateTime != null" >
+        thing_create_time = #{thingCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thingStaffId != null" >
+        thing_staff_id = #{thingStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="thingStaffName != null" >
+        thing_staff_name = #{thingStaffName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where thing_id = #{thingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.wygl.model.Thing" >
+    update thing
+    set thing_name = #{thingName,jdbcType=VARCHAR},
+      thing_house_id = #{thingHouseId,jdbcType=INTEGER},
+      thing_status = #{thingStatus,jdbcType=INTEGER},
+      thing_create_time = #{thingCreateTime,jdbcType=TIMESTAMP},
+      thing_staff_id = #{thingStaffId,jdbcType=INTEGER},
+      thing_staff_name = #{thingStaffName,jdbcType=VARCHAR}
+    where thing_id = #{thingId,jdbcType=INTEGER}
+  </update>
+</mapper>

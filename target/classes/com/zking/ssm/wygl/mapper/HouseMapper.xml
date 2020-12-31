@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.wygl.mapper.HouseMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.wygl.model.House" >
+    <constructor >
+      <idArg column="house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_arer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_plate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_loopline" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_precision" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_lat" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_birthday" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_floor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_proportion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_orientations" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_high_lines" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="house_way" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_decoration" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_price" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_water" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_electric" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_perimeter" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_require" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_nowpeople" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_hopepeople" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+
+    </constructor>
+  </resultMap>
+  <resultMap id="row" type="com.zking.ssm.wygl.model.House" >
+    <constructor >
+      <arg column="house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_arer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_plate" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_loopline" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_precision" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_lat" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_birthday" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_floor" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_proportion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_orientations" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_high_lines" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="house_way" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_decoration" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_price" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_water" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_electric" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_perimeter" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_require" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_nowpeople" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_hopepeople" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="house_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="house_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    house_id, house_city, house_arer, house_plate, house_loopline, house_name, house_address,
+    house_precision, house_lat, house_birthday, house_type, house_floor, house_proportion,
+    house_orientations, house_high_lines, house_way, house_decoration, house_price, house_water,
+    house_electric, house_perimeter,content_id, house_require, house_nowpeople, house_hopepeople,
+    house_status, house_sex, house_staff_id, house_staff_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from house
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from house
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.wygl.model.House" >
+    insert into house (house_id, house_city, house_arer,
+      house_plate, house_loopline, house_name,
+      house_address, house_precision, house_lat,
+      house_birthday, house_type, house_floor,
+      house_proportion, house_orientations, house_high_lines,
+      house_way, house_decoration, house_price,
+      house_water, house_electric, house_perimeter,content_id,
+       house_require, house_nowpeople,
+      house_hopepeople, house_status, house_sex,
+      house_staff_id, house_staff_name)
+    values (#{houseId,jdbcType=INTEGER}, #{houseCity,jdbcType=VARCHAR}, #{houseArer,jdbcType=VARCHAR},
+      #{housePlate,jdbcType=VARCHAR}, #{houseLoopline,jdbcType=VARCHAR}, #{houseName,jdbcType=VARCHAR},
+      #{houseAddress,jdbcType=VARCHAR}, #{housePrecision,jdbcType=VARCHAR}, #{houseLat,jdbcType=VARCHAR},
+      #{houseBirthday,jdbcType=VARCHAR}, #{houseType,jdbcType=VARCHAR}, #{houseFloor,jdbcType=VARCHAR},
+      #{houseProportion,jdbcType=VARCHAR}, #{houseOrientations,jdbcType=VARCHAR}, #{houseHighLines,jdbcType=TIMESTAMP},
+      #{houseWay,jdbcType=VARCHAR}, #{houseDecoration,jdbcType=VARCHAR}, #{housePrice,jdbcType=VARCHAR},
+      #{houseWater,jdbcType=VARCHAR}, #{houseElectric,jdbcType=VARCHAR}, #{housePerimeter,jdbcType=VARCHAR},  #{contentId,jdbcType=INTEGER},
+      #{contentId,jdbcType=INTEGER}, #{houseRequire,jdbcType=VARCHAR}, #{houseNowpeople,jdbcType=VARCHAR},
+      #{houseHopepeople,jdbcType=VARCHAR}, #{houseStatus,jdbcType=INTEGER}, #{houseSex,jdbcType=VARCHAR},
+      #{houseStaffId,jdbcType=INTEGER}, #{houseStaffName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.wygl.model.House" >
+    insert into house
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="houseCity != null" >
+        house_city,
+      </if>
+      <if test="houseArer != null" >
+        house_arer,
+      </if>
+      <if test="housePlate != null" >
+        house_plate,
+      </if>
+      <if test="houseLoopline != null" >
+        house_loopline,
+      </if>
+      <if test="houseName != null" >
+        house_name,
+      </if>
+      <if test="houseAddress != null" >
+        house_address,
+      </if>
+      <if test="housePrecision != null" >
+        house_precision,
+      </if>
+      <if test="houseLat!= null" >
+        house_lat,
+      </if>
+      <if test="houseBirthday!= null" >
+        house_birthday,
+      </if>
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="houseFloor != null" >
+        house_floor,
+      </if>
+      <if test="houseProportion != null" >
+        house_proportion,
+      </if>
+      <if test="houseOrientations != null" >
+        house_orientations,
+      </if>
+      <if test="houseHighLines != null" >
+        house_high_lines,
+      </if>
+      <if test="houseWay != null" >
+        house_way,
+      </if>
+      <if test="houseDecoration != null" >
+        house_decoration,
+      </if>
+      <if test="housePrice != null" >
+        house_price,
+      </if>
+      <if test="houseWater != null" >
+        house_water,
+      </if>
+      <if test="houseElectric != null" >
+        house_electric,
+      </if>
+      <if test="housePerimeter != null" >
+        house_perimeter,
+      </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
+      <if test="houseRequire != null" >
+        house_require,
+      </if>
+      <if test="houseNowpeople != null" >
+        house_nowpeople,
+      </if>
+      <if test="houseHopepeople != null" >
+        house_hopepeople,
+      </if>
+      <if test="houseStatus != null" >
+        house_status,
+      </if>
+      <if test="houseSex != null" >
+        house_sex,
+      </if>
+      <if test="houseStaffId != null" >
+        house_staff_id,
+      </if>
+      <if test="houseStaffName != null" >
+        house_staff_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseId != null" >
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="houseCity != null" >
+        #{houseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArer != null" >
+        #{houseArer,jdbcType=VARCHAR},
+      </if>
+      <if test="housePlate != null" >
+        #{housePlate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLoopline != null" >
+        #{houseLoopline,jdbcType=VARCHAR},
+      </if>
+      <if test="houseName != null" >
+        #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null" >
+        #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="housePrecision != null" >
+        #{housePrecision,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLat != null" >
+        #{houseLat,jdbcType=VARCHAR},
+      </if>
+      <if test="houseBirthday != null" >
+        #{houseBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseFloor != null" >
+        #{houseFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProportion != null" >
+        #{houseProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="houseOrientations != null" >
+        #{houseOrientations,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHighLines != null" >
+        #{houseHighLines,jdbcType=TIMESTAMP},
+      </if>
+      <if test="houseWay != null" >
+        #{houseWay,jdbcType=VARCHAR},
+      </if>
+      <if test="houseDecoration != null" >
+        #{houseDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="housePrice != null" >
+        #{housePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="houseWater != null" >
+        #{houseWater,jdbcType=VARCHAR},
+      </if>
+      <if test="houseElectric != null" >
+        #{houseElectric,jdbcType=VARCHAR},
+      </if>
+      <if test="housePerimeter != null" >
+        #{housePerimeter,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="houseRequire != null" >
+        #{houseRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNowpeople != null" >
+        #{houseNowpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHopepeople != null" >
+        #{houseHopepeople,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStatus != null" >
+        #{houseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="houseSex != null" >
+        #{houseSex,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStaffId != null" >
+        #{houseStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="houseStaffName != null" >
+        #{houseStaffName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.wygl.model.House" >
+    update house
+    <set >
+      <if test="houseCity != null" >
+        house_city = #{houseCity,jdbcType=VARCHAR},
+      </if>
+      <if test="houseArer != null" >
+        house_arer = #{houseArer,jdbcType=VARCHAR},
+      </if>
+      <if test="housePlate != null" >
+        house_plate = #{housePlate,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLoopline != null" >
+        house_loopline = #{houseLoopline,jdbcType=VARCHAR},
+      </if>
+      <if test="houseName != null" >
+        house_name = #{houseName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null" >
+        house_address = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="housePrecision != null" >
+        house_precision = #{housePrecision,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLat != null" >
+        house_lat = #{houseLat,jdbcType=VARCHAR},
+      </if>
+      <if test="houseBirthday != null" >
+        house_birthday = #{houseBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="houseFloor != null" >
+        house_floor = #{houseFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProportion != null" >
+        house_proportion = #{houseProportion,jdbcType=VARCHAR},
+      </if>
+      <if test="houseOrientations != null" >
+        house_orientations = #{houseOrientations,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHighLines != null" >
+        house_high_lines = #{houseHighLines,jdbcType=TIMESTAMP},
+      </if>
+      <if test="houseWay != null" >
+        house_way = #{houseWay,jdbcType=VARCHAR},
+      </if>
+      <if test="houseDecoration != null" >
+        house_decoration = #{houseDecoration,jdbcType=VARCHAR},
+      </if>
+      <if test="housePrice != null" >
+        house_price = #{housePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="houseWater != null" >
+        house_water = #{houseWater,jdbcType=VARCHAR},
+      </if>
+      <if test="houseElectric != null" >
+        house_electric = #{houseElectric,jdbcType=VARCHAR},
+      </if>
+      <if test="housePerimeter != null" >
+        house_perimeter = #{housePerimeter,jdbcType=VARCHAR},
+      </if>
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
+      <if test="houseRequire != null" >
+        house_require = #{houseRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNowpeople != null" >
+        house_nowpeople = #{houseNowpeople,jdbcType=VARCHAR},
+      </if>
+      <if test="houseHopepeople != null" >
+        house_hopepeople = #{houseHopepeople,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStatus != null" >
+        house_status = #{houseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="houseSex != null" >
+        house_sex = #{houseSex,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStaffId != null" >
+        house_staff_id = #{houseStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="houseStaffName != null" >
+        house_staff_name = #{houseStaffName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.wygl.model.House" >
+    update house
+    set house_city = #{houseCity,jdbcType=VARCHAR},
+      house_arer = #{houseArer,jdbcType=VARCHAR},
+      house_plate = #{housePlate,jdbcType=VARCHAR},
+      house_loopline = #{houseLoopline,jdbcType=VARCHAR},
+      house_name = #{houseName,jdbcType=VARCHAR},
+      house_address = #{houseAddress,jdbcType=VARCHAR},
+      house_precision = #{housePrecision,jdbcType=VARCHAR},
+      house_lat = #{houseLat,jdbcType=VARCHAR},
+      house_birthday = #{houseBirthday,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      house_floor = #{houseFloor,jdbcType=VARCHAR},
+      house_proportion = #{houseProportion,jdbcType=VARCHAR},
+      house_orientations = #{houseOrientations,jdbcType=VARCHAR},
+      house_high_lines = #{houseHighLines,jdbcType=TIMESTAMP},
+      house_way = #{houseWay,jdbcType=VARCHAR},
+      house_decoration = #{houseDecoration,jdbcType=VARCHAR},
+      house_price = #{housePrice,jdbcType=VARCHAR},
+      house_water = #{houseWater,jdbcType=VARCHAR},
+      house_electric = #{houseElectric,jdbcType=VARCHAR},
+      house_perimeter = #{housePerimeter,jdbcType=VARCHAR},
+      content_id = #{contentId,jdbcType=INTEGER},
+      house_require = #{houseRequire,jdbcType=VARCHAR},
+      house_nowpeople = #{houseNowpeople,jdbcType=VARCHAR},
+      house_hopepeople = #{houseHopepeople,jdbcType=VARCHAR},
+      house_status = #{houseStatus,jdbcType=INTEGER},
+      house_sex = #{houseSex,jdbcType=VARCHAR},
+      house_staff_id = #{houseStaffId,jdbcType=INTEGER},
+      house_staff_name = #{houseStaffName,jdbcType=VARCHAR}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  <select id="queryAll" parameterType="com.zking.ssm.wygl.model.House" resultMap="row">
+    select
+    <include refid="Base_Column_List" />
+    from house
+    where 1=1
+    <if test="houseProportion !=null">
+      and house_proportion like  concat(concat('%',#{houseProportion,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="houseType !=null">
+      and house_type like  concat(concat('%',#{houseType,jdbcType=VARCHAR}),'%')
+    </if>
+    <if test="houseFloor !=null">
+      and house_floor like  concat(concat('%',#{houseFloor,jdbcType=VARCHAR}),'%')
+    </if>
+
+
+
+
+    <if test="houseOrientations !=null">
+      and house_orientations like  concat(concat('%',#{houseOrientations,jdbcType=VARCHAR}),'%')
+    </if>
+  </select>
+</mapper>
+        <!--book_name like  concat(concat('%',#{bookName}),'%')-->

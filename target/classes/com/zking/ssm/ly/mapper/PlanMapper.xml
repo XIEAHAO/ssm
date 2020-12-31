@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.ly.mapper.PlanMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.ly.model.Plan" >
+  <constructor >
+    <idArg column="plan_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="plan_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="plan_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <arg column="plan_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    <arg column="plan_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    <arg column="plan_status" jdbcType="VARCHAR" javaType="java.lang.Integer" />
+    <arg column="plan_end_time" jdbcType="DATE" javaType="java.util.Date" />
+    <arg column="plan_crate_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+  </constructor>
+</resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.ly.model.Plan" >
+    <constructor >
+      <arg column="plan_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="plan_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="plan_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="plan_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="plan_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="plan_status" jdbcType="VARCHAR" javaType="java.lang.Integer" />
+      <arg column="plan_end_time" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="plan_crate_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    plan_id, plan_user_id, plan_user_name, plan_staff_id, plan_staff_name, plan_status, 
+    plan_end_time, plan_crate_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plan
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.ly.model.Plan" >
+    insert into plan (plan_id, plan_user_id, plan_user_name, 
+      plan_staff_id, plan_staff_name, plan_status, 
+      plan_end_time, plan_crate_time)
+    values (#{planId,jdbcType=INTEGER}, #{planUserId,jdbcType=INTEGER}, #{planUserName,jdbcType=VARCHAR}, 
+      #{planStaffId,jdbcType=INTEGER}, #{planStaffName,jdbcType=VARCHAR}, #{planStatus,jdbcType=VARCHAR}, 
+      #{planEndTime,jdbcType=DATE}, #{planCrateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.ly.model.Plan" >
+    insert into plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        plan_id,
+      </if>
+      <if test="planUserId != null" >
+        plan_user_id,
+      </if>
+      <if test="planUserName != null" >
+        plan_user_name,
+      </if>
+      <if test="planStaffId != null" >
+        plan_staff_id,
+      </if>
+      <if test="planStaffName != null" >
+        plan_staff_name,
+      </if>
+      <if test="planStatus != null" >
+        plan_status,
+      </if>
+      <if test="planEndTime != null" >
+        plan_end_time,
+      </if>
+      <if test="planCrateTime != null" >
+        plan_crate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="planId != null" >
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="planUserId != null" >
+        #{planUserId,jdbcType=INTEGER},
+      </if>
+      <if test="planUserName != null" >
+        #{planUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="planStaffId != null" >
+        #{planStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="planStaffName != null" >
+        #{planStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="planStatus != null" >
+        #{planStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="planEndTime != null" >
+        #{planEndTime,jdbcType=DATE},
+      </if>
+      <if test="planCrateTime != null" >
+        #{planCrateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.ly.model.Plan" >
+    update plan
+    <set >
+      <if test="planUserId != null" >
+        plan_user_id = #{planUserId,jdbcType=INTEGER},
+      </if>
+      <if test="planUserName != null" >
+        plan_user_name = #{planUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="planStaffId != null" >
+        plan_staff_id = #{planStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="planStaffName != null" >
+        plan_staff_name = #{planStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="planStatus != null" >
+        plan_status = #{planStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="planEndTime != null" >
+        plan_end_time = #{planEndTime,jdbcType=DATE},
+      </if>
+      <if test="planCrateTime != null" >
+        plan_crate_time = #{planCrateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.ly.model.Plan" >
+    update plan
+    set plan_user_id = #{planUserId,jdbcType=INTEGER},
+      plan_user_name = #{planUserName,jdbcType=VARCHAR},
+      plan_staff_id = #{planStaffId,jdbcType=INTEGER},
+      plan_staff_name = #{planStaffName,jdbcType=VARCHAR},
+      plan_status = #{planStatus,jdbcType=VARCHAR},
+      plan_end_time = #{planEndTime,jdbcType=DATE},
+      plan_crate_time = #{planCrateTime,jdbcType=TIMESTAMP}
+    where plan_id = #{planId,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAllPlan" resultMap="row" parameterType="com.zking.ssm.ly.model.Plan" >
+    select
+    <include refid="Base_Column_List" />
+    from plan
+    where 1=1
+    <if test="planId != null" >
+      and plan_id like  concat(concat('%',#{planId}),'%')
+    </if>
+
+    <if test="planUserId != null" >
+      and plan_user_id like  concat(concat('%',#{planUserId}),'%')
+    </if>
+
+    <if test="planUserName != null" >
+      and plan_user_name like  concat(concat('%',#{planUserName}),'%')
+    </if>
+
+    <if test="planStaffId != null" >
+      and plan_staff_id like  concat(concat('%',#{planStaffId}),'%')
+    </if>
+
+    <if test="planStaffName != null" >
+      and plan_staff_name like  concat(concat('%',#{planStaffName}),'%')
+    </if>
+
+    <if test="planStatus != null" >
+      and plan_status like  concat(concat('%',#{planStatus}),'%')
+    </if>
+
+    <if test="planEndTime != null" >
+      and plan_end_time like  concat(concat('%',#{planEndTime,jdbcType=INTEGER}),'%')
+    </if>
+
+    <if test="planCrateTime != null" >
+      and plan_crate_time like  concat(concat('%',#{planCrateTime,jdbcType=INTEGER}),'%')
+    </if>
+
+  </select>
+
+</mapper>

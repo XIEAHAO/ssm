@@ -27,4 +27,16 @@ public class RemburseController {
         List list = remburseService.query(record);
         return list;
     }
+
+    @RequestMapping("/insertremburse")
+    @ResponseBody
+    public void insert(Remburse record){
+        remburseService.insertSelective(record);
+    }
+
+    @RequestMapping("/updateremburse")
+    @ResponseBody
+    public void update(Remburse record){
+        remburseService.updateByPrimaryKeySelective(record);
+    }
 }

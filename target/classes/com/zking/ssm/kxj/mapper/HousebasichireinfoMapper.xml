@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.kxj.mapper.HousebasichireinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    <constructor >
+      <idArg column="info_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info_building_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info_start_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="info_end_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="info_crate_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="info_house_price" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    <constructor >
+      <arg column="info_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info_building_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info_start_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="info_end_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="info_crate_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="info_house_price" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="info_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="info_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    info_id, info_house_id, info_user_id, info_user_name, info_building_name, info_start_date, 
+    info_end_date, info_crate_time, info_house_price, info_staff_name, info_staff_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from housebasichireinfo
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </select>
+
+  <select id="query" resultMap="row" parameterType="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    select
+    <include refid="Base_Column_List" />
+    from housebasichireinfo
+    where 1=1
+    <if test="infoUserName != null" >
+      and info_user_name like concat(concat('%',#{infoUserName}),'%')
+    </if>
+    <if test="infoHouseId != null" >
+      and info_house_id like concat(concat('%',#{infoHouseId}),'%')
+    </if>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from housebasichireinfo
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    insert into housebasichireinfo (info_id, info_house_id, info_user_id, 
+      info_user_name, info_building_name, info_start_date, 
+      info_end_date, info_crate_time, info_house_price, 
+      info_staff_name, info_staff_id)
+    values (#{infoId,jdbcType=INTEGER}, #{infoHouseId,jdbcType=INTEGER}, #{infoUserId,jdbcType=INTEGER}, 
+      #{infoUserName,jdbcType=VARCHAR}, #{infoBuildingName,jdbcType=VARCHAR}, #{infoStartDate,jdbcType=TIMESTAMP}, 
+      #{infoEndDate,jdbcType=TIMESTAMP}, #{infoCrateTime,jdbcType=TIMESTAMP}, #{infoHousePrice,jdbcType=INTEGER}, 
+      #{infoStaffName,jdbcType=VARCHAR}, #{infoStaffId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    insert into housebasichireinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        info_id,
+      </if>
+      <if test="infoHouseId != null" >
+        info_house_id,
+      </if>
+      <if test="infoUserId != null" >
+        info_user_id,
+      </if>
+      <if test="infoUserName != null" >
+        info_user_name,
+      </if>
+      <if test="infoBuildingName != null" >
+        info_building_name,
+      </if>
+      <if test="infoStartDate != null" >
+        info_start_date,
+      </if>
+      <if test="infoEndDate != null" >
+        info_end_date,
+      </if>
+        info_crate_time,
+      <if test="infoHousePrice != null" >
+        info_house_price,
+      </if>
+      <if test="infoStaffName != null" >
+        info_staff_name,
+      </if>
+      <if test="infoStaffId != null" >
+        info_staff_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="infoHouseId != null" >
+        #{infoHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="infoUserId != null" >
+        #{infoUserId,jdbcType=INTEGER},
+      </if>
+      <if test="infoUserName != null" >
+        #{infoUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoBuildingName != null" >
+        #{infoBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoStartDate != null" >
+        #{infoStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoEndDate != null" >
+        #{infoEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoCrateTime != null" >
+        #{infoCrateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoHousePrice != null" >
+        #{infoHousePrice,jdbcType=INTEGER},
+      </if>
+      <if test="infoStaffName != null" >
+        #{infoStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoStaffId != null" >
+        #{infoStaffId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    update housebasichireinfo
+    <set >
+      <if test="infoHouseId != null" >
+        info_house_id = #{infoHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="infoUserId != null" >
+        info_user_id = #{infoUserId,jdbcType=INTEGER},
+      </if>
+      <if test="infoUserName != null" >
+        info_user_name = #{infoUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoBuildingName != null" >
+        info_building_name = #{infoBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoStartDate != null" >
+        info_start_date = #{infoStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoEndDate != null" >
+        info_end_date = #{infoEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoCrateTime != null" >
+        info_crate_time = #{infoCrateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoHousePrice != null" >
+        info_house_price = #{infoHousePrice,jdbcType=INTEGER},
+      </if>
+      <if test="infoStaffName != null" >
+        info_staff_name = #{infoStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoStaffId != null" >
+        info_staff_id = #{infoStaffId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.kxj.model.Housebasichireinfo" >
+    update housebasichireinfo
+    set info_house_id = #{infoHouseId,jdbcType=INTEGER},
+      info_user_id = #{infoUserId,jdbcType=INTEGER},
+      info_user_name = #{infoUserName,jdbcType=VARCHAR},
+      info_building_name = #{infoBuildingName,jdbcType=VARCHAR},
+      info_start_date = #{infoStartDate,jdbcType=TIMESTAMP},
+      info_end_date = #{infoEndDate,jdbcType=TIMESTAMP},
+      info_crate_time = #{infoCrateTime,jdbcType=TIMESTAMP},
+      info_house_price = #{infoHousePrice,jdbcType=INTEGER},
+      info_staff_name = #{infoStaffName,jdbcType=VARCHAR},
+      info_staff_id = #{infoStaffId,jdbcType=INTEGER}
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+</mapper>

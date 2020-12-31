@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.ly.mapper.LoseUserMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.ly.model.LoseUser" >
+    <constructor >
+      <idArg column="loseuser_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loseuser_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loseuser_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loseuser_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loseuser_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loseuser_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="loseuser_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loseuser_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.ly.model.LoseUser" >
+    <constructor >
+      <arg column="loseuser_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loseuser_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loseuser_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loseuser_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loseuser_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loseuser_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="loseuser_text" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loseuser_status" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    loseuser_id, loseuser_user_id, loseuser_user_name, loseuser_staff_name, loseuser_staff_id, 
+    loseuser_create_time, loseuser_text, loseuser_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from loseuser
+    where loseuser_id = #{loseuserId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from loseuser
+    where loseuser_id = #{loseuserId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.ly.model.LoseUser" >
+    insert into loseuser (loseuser_id, loseuser_user_id, loseuser_user_name, 
+      loseuser_staff_name, loseuser_staff_id, loseuser_create_time, 
+      loseuser_text, loseuser_status)
+    values (#{loseuserId,jdbcType=INTEGER}, #{loseuserUserId,jdbcType=INTEGER}, #{loseuserUserName,jdbcType=VARCHAR}, 
+      #{loseuserStaffName,jdbcType=VARCHAR}, #{loseuserStaffId,jdbcType=INTEGER}, #{loseuserCreateTime,jdbcType=TIMESTAMP}, 
+      #{loseuserText,jdbcType=VARCHAR}, #{loseuserStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.ly.model.LoseUser" >
+    insert into loseuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loseuserId != null" >
+        loseuser_id,
+      </if>
+      <if test="loseuserUserId != null" >
+        loseuser_user_id,
+      </if>
+      <if test="loseuserUserName != null" >
+        loseuser_user_name,
+      </if>
+      <if test="loseuserStaffName != null" >
+        loseuser_staff_name,
+      </if>
+      <if test="loseuserStaffId != null" >
+        loseuser_staff_id,
+      </if>
+      <if test="loseuserCreateTime != null" >
+        loseuser_create_time,
+      </if>
+      <if test="loseuserText != null" >
+        loseuser_text,
+      </if>
+      <if test="loseuserStatus != null" >
+        loseuser_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loseuserId != null" >
+        #{loseuserId,jdbcType=INTEGER},
+      </if>
+      <if test="loseuserUserId != null" >
+        #{loseuserUserId,jdbcType=INTEGER},
+      </if>
+      <if test="loseuserUserName != null" >
+        #{loseuserUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loseuserStaffName != null" >
+        #{loseuserStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="loseuserStaffId != null" >
+        #{loseuserStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="loseuserCreateTime != null" >
+        #{loseuserCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loseuserText != null" >
+        #{loseuserText,jdbcType=VARCHAR},
+      </if>
+      <if test="loseuserStatus != null" >
+        #{loseuserStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.ly.model.LoseUser" >
+    update loseuser
+    <set >
+      <if test="loseuserUserId != null" >
+        loseuser_user_id = #{loseuserUserId,jdbcType=INTEGER},
+      </if>
+      <if test="loseuserUserName != null" >
+        loseuser_user_name = #{loseuserUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="loseuserStaffName != null" >
+        loseuser_staff_name = #{loseuserStaffName,jdbcType=VARCHAR},
+      </if>
+      <if test="loseuserStaffId != null" >
+        loseuser_staff_id = #{loseuserStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="loseuserCreateTime != null" >
+        loseuser_create_time = #{loseuserCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loseuserText != null" >
+        loseuser_text = #{loseuserText,jdbcType=VARCHAR},
+      </if>
+      <if test="loseuserStatus != null" >
+        loseuser_status = #{loseuserStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where loseuser_id = #{loseuserId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.ly.model.LoseUser" >
+    update loseuser
+    set loseuser_user_id = #{loseuserUserId,jdbcType=INTEGER},
+      loseuser_user_name = #{loseuserUserName,jdbcType=VARCHAR},
+      loseuser_staff_name = #{loseuserStaffName,jdbcType=VARCHAR},
+      loseuser_staff_id = #{loseuserStaffId,jdbcType=INTEGER},
+      loseuser_create_time = #{loseuserCreateTime,jdbcType=TIMESTAMP},
+      loseuser_text = #{loseuserText,jdbcType=VARCHAR},
+      loseuser_status = #{loseuserStatus,jdbcType=INTEGER}
+    where loseuser_id = #{loseuserId,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryAllLoseUser" resultMap="row" parameterType="com.zking.ssm.ly.model.LoseUser" >
+    select
+    <include refid="Base_Column_List" />
+    from loseuser
+    where 1=1
+
+    <if test="loseuserId != null" >
+      and loseuser_user_id like  concat(concat('%',#{loseuserId}),'%')
+    </if>
+
+    <if test="loseuserId != null" >
+      and loseuser_id like  concat(concat('%',#{loseuserId}),'%')
+    </if>
+
+    <if test="loseuserUserName != null" >
+      and loseuser_user_name like  concat(concat('%',#{loseuserUserName}),'%')
+    </if>
+
+    <if test="loseuserStaffName != null" >
+      and loseuser_staff_name like  concat(concat('%',#{loseuserStaffName}),'%')
+    </if>
+
+    <if test="loseuserStaffId != null" >
+      and loseuser_staff_id like  concat(concat('%',#{loseuserStaffId}),'%')
+    </if>
+
+    <if test="loseuserCreateTime != null" >
+      and loseuser_create_time like  concat(concat('%',#{loseuserCreateTime,jdbcType=INTEGER}),'%')
+    </if>
+
+    <if test="loseuserText != null" >
+      and loseuser_text like  concat(concat('%',#{loseuserText}),'%')
+    </if>
+
+    <if test="loseuserStatus != null" >
+      and loseuser_status like  concat(concat('%',#{loseuserStatus}),'%')
+    </if>
+  </select>
+
+</mapper>

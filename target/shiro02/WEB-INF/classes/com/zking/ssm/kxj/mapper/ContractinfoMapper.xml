@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zking.ssm.kxj.mapper.ContractinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zking.ssm.kxj.model.Contractinfo" >
+    <constructor >
+      <idArg column="contract_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_building_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_start_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contract_end_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contract_tenancy" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_house_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="contract_rental_bond" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contract_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <resultMap id="row" type="com.zking.ssm.kxj.model.Contractinfo" >
+    <constructor >
+      <arg column="contract_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_house_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_house_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_building_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_start_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contract_end_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contract_tenancy" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_house_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="contract_rental_bond" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contract_create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="contract_staff_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="contract_staff_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    contract_id, contract_house_id, contract_house_name, contract_user_id, contract_user_name, 
+    contract_building_name, contract_state, contract_start_date, contract_end_date, contract_tenancy, 
+    contract_house_price, contract_rental_bond, contract_create_time, contract_staff_id, 
+    contract_staff_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from contractinfo
+    where contract_id = #{contractId,jdbcType=INTEGER}
+  </select>
+
+  <select id="query" resultMap="row" parameterType="com.zking.ssm.kxj.model.Contractinfo" >
+    select
+    <include refid="Base_Column_List" />
+    from contractinfo
+    where 1=1
+    <if test="contractHouseName != null" >
+      and contract_house_name like concat(concat('%',#{contractHouseName}),'%')
+    </if>
+    <if test="contractUserName != null" >
+      and contract_user_name like concat(concat('%',#{contractUserName}),'%')
+    </if>
+
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from contractinfo
+    where contract_id = #{contractId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zking.ssm.kxj.model.Contractinfo" >
+    insert into contractinfo (contract_id, contract_house_id, contract_house_name, 
+      contract_user_id, contract_user_name, contract_building_name, 
+      contract_state, contract_start_date, contract_end_date, 
+      contract_tenancy, contract_house_price, contract_rental_bond, 
+      contract_create_time, contract_staff_id, 
+      contract_staff_name)
+    values (#{contractId,jdbcType=INTEGER}, #{contractHouseId,jdbcType=INTEGER}, #{contractHouseName,jdbcType=VARCHAR}, 
+      #{contractUserId,jdbcType=INTEGER}, #{contractUserName,jdbcType=VARCHAR}, #{contractBuildingName,jdbcType=VARCHAR}, 
+      #{contractState,jdbcType=INTEGER}, #{contractStartDate,jdbcType=TIMESTAMP}, #{contractEndDate,jdbcType=TIMESTAMP}, 
+      #{contractTenancy,jdbcType=VARCHAR}, #{contractHousePrice,jdbcType=DECIMAL}, #{contractRentalBond,jdbcType=VARCHAR}, 
+      #{contractCreateTime,jdbcType=TIMESTAMP}, #{contractStaffId,jdbcType=INTEGER}, 
+      #{contractStaffName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zking.ssm.kxj.model.Contractinfo" >
+    insert into contractinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        contract_id,
+      </if>
+      <if test="contractHouseId != null" >
+        contract_house_id,
+      </if>
+      <if test="contractHouseName != null" >
+        contract_house_name,
+      </if>
+      <if test="contractUserId != null" >
+        contract_user_id,
+      </if>
+      <if test="contractUserName != null" >
+        contract_user_name,
+      </if>
+      <if test="contractBuildingName != null" >
+        contract_building_name,
+      </if>
+      <if test="contractState != null" >
+        contract_state,
+      </if>
+      <if test="contractStartDate != null" >
+        contract_start_date,
+      </if>
+      <if test="contractEndDate != null" >
+        contract_end_date,
+      </if>
+      <if test="contractTenancy != null" >
+        contract_tenancy,
+      </if>
+      <if test="contractHousePrice != null" >
+        contract_house_price,
+      </if>
+      <if test="contractRentalBond != null" >
+        contract_rental_bond,
+      </if>
+      <if test="contractCreateTime != null" >
+        contract_create_time,
+      </if>
+      <if test="contractStaffId != null" >
+        contract_staff_id,
+      </if>
+      <if test="contractStaffName != null" >
+        contract_staff_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        #{contractId,jdbcType=INTEGER},
+      </if>
+      <if test="contractHouseId != null" >
+        #{contractHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="contractHouseName != null" >
+        #{contractHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUserId != null" >
+        #{contractUserId,jdbcType=INTEGER},
+      </if>
+      <if test="contractUserName != null" >
+        #{contractUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractBuildingName != null" >
+        #{contractBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractState != null" >
+        #{contractState,jdbcType=INTEGER},
+      </if>
+      <if test="contractStartDate != null" >
+        #{contractStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractEndDate != null" >
+        #{contractEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractTenancy != null" >
+        #{contractTenancy,jdbcType=VARCHAR},
+      </if>
+      <if test="contractHousePrice != null" >
+        #{contractHousePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="contractRentalBond != null" >
+        #{contractRentalBond,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCreateTime != null" >
+        #{contractCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractStaffId != null" >
+        #{contractStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="contractStaffName != null" >
+        #{contractStaffName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zking.ssm.kxj.model.Contractinfo" >
+    update contractinfo
+    <set >
+      <if test="contractHouseId != null" >
+        contract_house_id = #{contractHouseId,jdbcType=INTEGER},
+      </if>
+      <if test="contractHouseName != null" >
+        contract_house_name = #{contractHouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractUserId != null" >
+        contract_user_id = #{contractUserId,jdbcType=INTEGER},
+      </if>
+      <if test="contractUserName != null" >
+        contract_user_name = #{contractUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractBuildingName != null" >
+        contract_building_name = #{contractBuildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractState != null" >
+        contract_state = #{contractState,jdbcType=INTEGER},
+      </if>
+      <if test="contractStartDate != null" >
+        contract_start_date = #{contractStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractEndDate != null" >
+        contract_end_date = #{contractEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractTenancy != null" >
+        contract_tenancy = #{contractTenancy,jdbcType=VARCHAR},
+      </if>
+      <if test="contractHousePrice != null" >
+        contract_house_price = #{contractHousePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="contractRentalBond != null" >
+        contract_rental_bond = #{contractRentalBond,jdbcType=VARCHAR},
+      </if>
+      <if test="contractCreateTime != null" >
+        contract_create_time = #{contractCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractStaffId != null" >
+        contract_staff_id = #{contractStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="contractStaffName != null" >
+        contract_staff_name = #{contractStaffName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contract_id = #{contractId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zking.ssm.kxj.model.Contractinfo" >
+    update contractinfo
+    set contract_house_id = #{contractHouseId,jdbcType=INTEGER},
+      contract_house_name = #{contractHouseName,jdbcType=VARCHAR},
+      contract_user_id = #{contractUserId,jdbcType=INTEGER},
+      contract_user_name = #{contractUserName,jdbcType=VARCHAR},
+      contract_building_name = #{contractBuildingName,jdbcType=VARCHAR},
+      contract_state = #{contractState,jdbcType=INTEGER},
+      contract_start_date = #{contractStartDate,jdbcType=TIMESTAMP},
+      contract_end_date = #{contractEndDate,jdbcType=TIMESTAMP},
+      contract_tenancy = #{contractTenancy,jdbcType=VARCHAR},
+      contract_house_price = #{contractHousePrice,jdbcType=DECIMAL},
+      contract_rental_bond = #{contractRentalBond,jdbcType=VARCHAR},
+      contract_create_time = #{contractCreateTime,jdbcType=TIMESTAMP},
+      contract_staff_id = #{contractStaffId,jdbcType=INTEGER},
+      contract_staff_name = #{contractStaffName,jdbcType=VARCHAR}
+    where contract_id = #{contractId,jdbcType=INTEGER}
+  </update>
+</mapper>
